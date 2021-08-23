@@ -35,8 +35,10 @@
         <!-- Page Content -->
         <main>
             <div class="py-5">
-                <div class="max-w-9xl mx-auto sm:px-6 lg:px-8">
+                <div class="max-w-9xl mx-auto sm:px-6 lg:px-8 relative">
+                    @if(Session::get('success') || Session::get('error'))
                     <x-inc.flash-message></x-inc.flash-message>
+                    @endif
 
                     <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                         {{ $breadcrumb ?? '' }}
