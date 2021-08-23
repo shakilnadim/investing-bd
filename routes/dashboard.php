@@ -13,10 +13,13 @@ Route::prefix('news')->name('.news')->group(function (){
 });
 
 Route::prefix('categories')->name('.categories')->group(function (){
-    Route::view('', 'admin.categories.index')->middleware('can:view-list,' . Category::class);
+    Route::get('', [CategoryController::class, 'index'])->middleware('can:view-list,' . Category::class);
     Route::middleware('can:create,' . Category::class)->group(function (){
         Route::get('create', [CategoryController::class, 'create'])->name('.create');
         Route::post('store', [CategoryController::class, 'store'])->name('.store');
+        Route::get('{category}/edit', [CategoryController::class, 'edit'])->name('.edit');
+        Route::patch('{category}/update', [CategoryController::class, 'update'])->name('.update');
+        Route::delete('{category}/delete', [CategoryController::class, 'delete'])->name('.delete');
     });
 });
 

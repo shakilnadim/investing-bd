@@ -7,4 +7,16 @@
         </x-inc.breadcrumb>
     </x-slot>
 
+    @foreach($categories as $category)
+        <x-inc.list-item :item="$category"
+                         editLink="{{ route('admin.categories.edit', ['category' => $category->id]) }}"
+                         deleteLink="{{ route('admin.categories.delete', ['category' => $category->id]) }}">
+            <a href="{{ route('admin.categories.edit', ['category' => $category->id]) }}" class="text-lg font-semibold hover:text-primary transition duration-300">{{ $category->name }}</a> <span class="p-1 {{ $category->is_published ? 'bg-green-600' : 'bg-red-600' }} text-xs rounded text-white">{{ $category->is_published ? 'Published' : 'Unpublished' }}</span>
+        </x-inc.list-item>
+    @endforeach
+
+    <div class="mt-4">
+        {{ $categories->links() }}
+    </div>
+
 </x-app-layout>

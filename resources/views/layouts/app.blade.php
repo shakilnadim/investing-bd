@@ -34,6 +34,10 @@
 
         <!-- Page Content -->
         <main>
+            <div class="max-w-9xl mx-auto sm:px-6 lg:px-8 py-3">
+                {{ $breadcrumb ?? '' }}
+            </div>
+
             <div class="py-5">
                 <div class="max-w-9xl mx-auto sm:px-6 lg:px-8 relative">
                     @if(Session::get('success') || Session::get('error'))
@@ -41,7 +45,6 @@
                     @endif
 
                     <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                        {{ $breadcrumb ?? '' }}
                         <div class="p-6 bg-white border-b border-gray-200">
                             {{ $slot }}
                         </div>

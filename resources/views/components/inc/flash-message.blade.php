@@ -11,9 +11,9 @@
 
 <script>
     let flashMessage = document.querySelector('#flash-message');
-    flashMessage.classList.add('translate-y-56');
+    flashMessage.classList.add('translate-y-40');
     setTimeout(function(){
-        flashMessage.classList.remove('translate-y-56');
+        flashMessage.classList.remove('translate-y-40');
     }, 3000);
 </script>
 

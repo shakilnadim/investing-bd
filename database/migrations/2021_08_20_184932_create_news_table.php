@@ -22,6 +22,7 @@ class CreateNewsTable extends Migration
             $table->longText('description');
             $table->string('featured_img');
             $table->text('meta')->nullable();
+            $table->boolean('is_published')->default(false);
             $table->timestamps();
         });
     }

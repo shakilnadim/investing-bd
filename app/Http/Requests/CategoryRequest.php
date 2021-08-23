@@ -5,6 +5,7 @@ namespace App\Http\Requests;
 use App\Models\Category;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Validation\Rule;
 
 class CategoryRequest extends FormRequest
 {
@@ -25,11 +26,17 @@ class CategoryRequest extends FormRequest
      */
     public function rules() : array
     {
-        return [
+        $rules = [
             'name' => 'required|string',
             'slug' => 'required|string|unique:categories|alpha_dash',
             'category_id' => 'nullable|integer|exists:categories,id',
             'meta' => 'nullable|string',
+            'is_published' => 'nullable',
         ];
+
+        if ($this->method() === 'PATCH') {
+            $rules['slug'] = ['required', 'string', 'alpha_dash', Rule::unique('categories')->ignore($this->route('category')->id)];
+        }
+        return $rules;
     }
 }
