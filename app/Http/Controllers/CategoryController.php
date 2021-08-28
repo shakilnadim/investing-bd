@@ -15,7 +15,7 @@ class CategoryController extends Controller
 
     public function index() : View
     {
-        $categories = Category::orderBy('name')->simplePaginate(10);
+        $categories = Category::with('category')->orderBy('name')->simplePaginate(10);
         return view('admin.categories.index', compact('categories'));
     }
 
@@ -27,8 +27,8 @@ class CategoryController extends Controller
 
     public function store(CategoryRequest $request) : RedirectResponse
     {
-        if(Category::create($request->validated())) return redirect()->route('admin.categories')->with('success', 'Category created successfully!');
-        return redirect()->route('admin.categories')->with('error', 'Something went wrong! Please try again.');
+        Category::create($request->validated());
+        return redirect()->route('admin.categories')->with('success', 'Category created successfully!');
     }
 
     public function edit(Category $category) : View
@@ -39,12 +39,19 @@ class CategoryController extends Controller
 
     public function update(CategoryRequest $request, Category $category) : RedirectResponse
     {
-        if ($category->update($request->validated())) return redirect()->back()->with('success', 'Category updated successfully!');
-        return redirect()->back()->with('error', 'Something went wrong! Please try again.');
+        $category->update($request->validated());
+        return redirect()->route('admin.categories')->with('success', 'Category updated successfully!');
     }
 
-    public function delete(Category $category)
+    public function delete(Category $category) : RedirectResponse
     {
-        return $category;
+        $category->delete();
+        return redirect()->route('admin.categories')->with('success', 'Category deleted successfully!');
+    }
+
+    public function updateStatus(Category $category, $status) : RedirectResponse
+    {
+        $this->categoryService->updateStatus($category, $status);
+        return redirect()->back()->with('success', 'Category status updated successfully!');
     }
 }

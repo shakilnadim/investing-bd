@@ -20,6 +20,9 @@ Route::prefix('categories')->name('.categories')->group(function (){
         Route::get('{category}/edit', [CategoryController::class, 'edit'])->name('.edit');
         Route::patch('{category}/update', [CategoryController::class, 'update'])->name('.update');
         Route::delete('{category}/delete', [CategoryController::class, 'delete'])->name('.delete');
+        Route::put('{category}/update/status/{status}', [CategoryController::class, 'updateStatus'])
+            ->name('.update.status')
+            ->where('status', 'publish|unpublish');
     });
 });
 
