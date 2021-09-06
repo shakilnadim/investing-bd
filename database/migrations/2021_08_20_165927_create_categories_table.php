@@ -21,6 +21,7 @@ class CreateCategoriesTable extends Migration
             $table->text('meta')->nullable();
             $table->boolean('is_published')->default(false);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
