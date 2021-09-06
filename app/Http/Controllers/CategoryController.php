@@ -7,7 +7,6 @@ use App\Models\Category;
 use App\Services\CategoryService;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
@@ -15,7 +14,7 @@ class CategoryController extends Controller
 
     public function index() : View
     {
-        $categories = Category::with('category')->orderBy('name')->simplePaginate(10);
+        $categories = Category::with('parentCategory')->orderBy('name')->simplePaginate(10);
         return view('admin.categories.index', compact('categories'));
     }
 

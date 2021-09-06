@@ -24,21 +24,24 @@ class UserSeeder extends Seeder
                 'email' => 'shakilnadim@gmail.com',
                 'password' => Hash::make('shakil123'),
                 'role' => Roles::ADMIN,
-                'created_at' => $timestamp
+                'created_at' => $timestamp,
+                'updated_at' => $timestamp,
             ],
             [
                 'name' => 'user',
                 'email' => 'user@gmail.com',
                 'password' => Hash::make('shakil123'),
                 'role' => Roles::USER,
-                'created_at' => $timestamp
+                'created_at' => $timestamp,
+                'updated_at' => $timestamp,
             ],
             [
                 'name' => 'author',
                 'email' => 'author@gmail.com',
                 'password' => Hash::make('shakil123'),
                 'role' => Roles::AUTHOR,
-                'created_at' => $timestamp
+                'created_at' => $timestamp,
+                'updated_at' => $timestamp,
             ],
         ];
     }

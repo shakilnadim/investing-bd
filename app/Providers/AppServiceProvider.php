@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Adapters\Image\ImageUploader;
+use App\Adapters\Image\InterventionImageUploader;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -13,7 +15,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->singleton(ImageUploader::class, InterventionImageUploader::class);
     }
 
     /**

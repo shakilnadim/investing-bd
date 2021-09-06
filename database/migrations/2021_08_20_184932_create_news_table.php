@@ -15,7 +15,8 @@ class CreateNewsTable extends Migration
     {
         Schema::create('news', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('category_id')->nullable()->constrained()->nullOnDelete()->cascadeOnUpdate();
+            $table->foreignId('parent_category_id')->nullable()->constrained('categories')->nullOnDelete()->cascadeOnUpdate();
+            $table->foreignId('sub_category_id')->nullable()->constrained('categories')->nullOnDelete()->cascadeOnUpdate();
             $table->foreignId('user_id')->nullable()->constrained()->nullOnDelete()->cascadeOnUpdate();
             $table->string('title');
             $table->string('slug')->unique();

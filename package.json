@@ -10,6 +10,8 @@
         "production": "mix --production"
     },
     "devDependencies": {
+        "@editorjs/image": "^2.6.1",
+        "@editorjs/quote": "^2.4.0",
         "@tailwindcss/forms": "^0.2.1",
         "autoprefixer": "^10.1.0",
         "axios": "^0.21",
@@ -18,5 +20,12 @@
         "postcss": "^8.2.1",
         "postcss-import": "^12.0.1",
         "tailwindcss": "^2.0.2"
+    },
+    "dependencies": {
+        "@editorjs/editorjs": "^2.22.2",
+        "@editorjs/header": "^2.6.1",
+        "@editorjs/list": "^1.6.2",
+        "@editorjs/table": "^2.0.1",
+        "uuid": "^8.3.2"
     }
 }

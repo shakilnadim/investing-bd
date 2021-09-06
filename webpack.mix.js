@@ -12,9 +12,10 @@ const mix = require('laravel-mix');
  */
 
 mix.js('resources/js/app.js', 'public/js')
-    .js('resources/js/confirmationPopup', 'public/js/confirmationPopup.js')
+    .js('resources/js/confirmationPopup', 'public/js/confirmationPopup')
+    .js('resources/js/editor', 'public/js/editor')
     .postCss('resources/css/app.css', 'public/css', [
-    require('postcss-import'),
-    require('tailwindcss'),
-    require('autoprefixer'),
-]);
+        require('postcss-import'),
+        require('tailwindcss'),
+        require('autoprefixer'),
+    ]);

@@ -1,3 +1,15 @@
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
+
+@layer utilities {
+    #editor h2{
+        @apply text-2xl font-bold;
+    }
+    #editor h3{
+        @apply text-xl font-bold;
+    }
+    #editor h4{
+        @apply text-lg font-bold;
+    }
+}

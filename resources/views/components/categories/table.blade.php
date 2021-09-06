@@ -1,13 +1,10 @@
 @props(['categories'])
-<slot name="scripts">
-    <script src="{{ asset('js/confirmationPopup.js') }}"></script>
-</slot>
 <div x-data="confirmationData">
     <x-inc.table :columns="['Name', 'Parent Category', 'Status', 'Created at', 'Last updated at', 'Actions']">
         @foreach($categories as $category)
             <tr>
                 <td class="p-3 text-sm">{{ $category->name }}</td>
-                <td class="p-3 text-sm">{{ $category->category->name ?? null }}</td>
+                <td class="p-3 text-sm">{{ $category->parentCategory->name ?? null }}</td>
                 <td class="p-3 text-sm">
                     <span class="px-1 rounded-lg {{ $category->is_published ? 'bg-green-100 text-green-900' : 'bg-pink-100 text-pink-900' }}">
                         {{ $category->is_published ? 'Published' : 'Unpublished' }}
@@ -26,7 +23,7 @@
                         <x-inc.dynamic-btn class="justify-center w-20 bg-green-200 hover:bg-green-400 text-green-900" @click="updateStatusConfirmation('category', 'publish', '{{ route('admin.categories.update.status', [$category->id, 'publish']) }}')">Publish</x-inc.dynamic-btn>
                     @endif
 
-                    <x-inc.dynamic-btn class="text-red-900 bg-red-200 hover:bg-red-400" @click="deleteConfirmation('{{ route('admin.categories.delete', ['category' => $category->id]) }}')">Delete</x-inc.dynamic-btn>
+                    <x-inc.dynamic-btn class="text-red-900 bg-red-200 hover:bg-red-400" @click="deleteConfirmation('category', '{{ route('admin.categories.delete', ['category' => $category->id]) }}')">Delete</x-inc.dynamic-btn>
                 </td>
             </tr>
         @endforeach

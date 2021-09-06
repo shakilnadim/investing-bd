@@ -16,7 +16,7 @@
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script defer src="https://unpkg.com/alpinejs@3.2.2/dist/cdn.min.js"></script>
-    {{ $scripts ?? '' }}
+    {{ $links ?? '' }}
 </head>
 <body class="font-sans antialiased">
 <div class="grid grid-cols-7 col-span-full">
