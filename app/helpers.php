@@ -1,14 +1,10 @@
 <?php
+use Illuminate\Database\Eloquent\Collection;
 
-if (!function_exists('format_key_values')){
-    function format_key_values(\Illuminate\Database\Eloquent\Collection $rows, string $valueColumn, string $keyColumn='id', $nullValue = null) : array
+if (!function_exists('add_placeholder_to_collection')){
+    function add_placeholder_to_collection(Collection $rows, $placeHolderText, string $keyColumn, string $valueColumn='id') : Collection
     {
-        $data = [];
-
-        if ($nullValue) $data[''] = $nullValue;
-        foreach ($rows as $row) {
-            $data[$row->$keyColumn] = $row->$valueColumn;
-        }
-        return $data;
+        $data = collect([$valueColumn => '', $keyColumn => $placeHolderText]);
+        return $rows->prepend($data);
     }
 }

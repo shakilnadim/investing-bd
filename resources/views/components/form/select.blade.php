@@ -1,9 +1,9 @@
-@props(['name', 'value' => '', 'label', 'labelFor' => '', 'required' => false, 'options'])
+@props(['name', 'value' => '', 'keyField', 'valueField' => 'id', 'label', 'labelFor' => '', 'required' => false, 'options'])
 <div {{ $attributes }}>
     <label for="{{ $labelFor }}">{{ $label }}</label>
     <select name="{{ $name }}" {{ $labelFor ? "id=$labelFor" : '' }} class="w-full rounded border-gray-300 shadow-sm mt-1">
-        @foreach($options as $key => $option )
-            <option value="{{ $key }}" {{ $value == $key ? 'selected' : '' }}>{{ $option }}</option>
+        @foreach($options as $option )
+            <option value="{{ $option[$valueField] }}" {{ $value == $option[$valueField] ? 'selected' : '' }}>{{ $option[$keyField] }}</option>
         @endforeach
     </select>
     @error($name)

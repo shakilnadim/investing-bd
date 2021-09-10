@@ -18,9 +18,10 @@ class CategoryController extends Controller
         return view('admin.categories.index', compact('categories'));
     }
 
-    public function create() : View
+    public function create()
     {
-        $parentCats = $this->categoryService->getParentCategories();
+        $parentCats = Category::parentCategories()->published()->get();
+        $parentCats = $this->categoryService->prependPlaceholder($parentCats);
         return view('admin.categories.create', compact('parentCats'));
     }
 
@@ -32,7 +33,8 @@ class CategoryController extends Controller
 
     public function edit(Category $category) : View
     {
-        $parentCats = $this->categoryService->getParentCategories();
+        $parentCats = Category::parentCategories()->published()->where('id', '!=', $category->id)->get();
+        $parentCats = $this->categoryService->prependPlaceholder($parentCats);
         return view('admin.categories.edit', ['category' => $category, 'parentCats' => $parentCats]);
     }
 

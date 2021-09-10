@@ -9,7 +9,7 @@
         <x-inc.breadcrumb :paths="['News' => route('admin.news'), 'Create' => route('admin.news.create')]"></x-inc.breadcrumb>
     </x-slot>
 
-    <x-news.form action="{{ route('admin.news.store') }}"></x-news.form>
+    <x-news.form action="{{ route('admin.news.store') }}" :categories="$categories"></x-news.form>
 
 </x-app-layout>
 

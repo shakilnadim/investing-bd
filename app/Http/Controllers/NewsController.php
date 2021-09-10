@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ImageRequest;
 use App\Http\Requests\NewsRequest;
 use App\Models\News;
+use App\Services\CategoryService;
 use App\Services\NewsImageService;
 use App\Services\NewsService;
 use Illuminate\Contracts\View\View;
@@ -14,7 +15,7 @@ use Illuminate\Http\Request;
 
 class NewsController extends Controller
 {
-    public function __construct(private NewsService $newsService, private NewsImageService $newsImageService)
+    public function __construct(private NewsService $newsService, private CategoryService $categoryService, private NewsImageService $newsImageService)
     {}
 
     public function index() : View
@@ -25,7 +26,9 @@ class NewsController extends Controller
 
     public function create() : View
     {
-        return view('admin.news.create');
+        $categories = $this->categoryService->getUserBasedPublishedCategories();
+        $categories = $this->categoryService->prependPlaceholder($categories);
+        return view('admin.news.create', compact('categories'));
     }
 
     public function store(NewsRequest $request) : RedirectResponse
