@@ -11,8 +11,8 @@
     <x-form.textarea label="Meta" labelFor="meta" name="meta" class="mt-3" value="{{ old('meta') ?? $category->meta ?? '' }}"></x-form.textarea>
     <x-form.checkbox label="Publish this category" labelFor="is-published" name="is_published" :value="1" :checked="old('is_published') == 1 || (isset($category) && $category->is_published)" class="mt-3"></x-form.checkbox>
     @isset($method)
-        <x-button class="mt-3"><x-icons.pencil-alt class="h-5 w-5 mr-1"></x-icons.pencil-alt> Update Category</x-button>
+        <x-inc.dynamic-btn class="ml-auto mt-3 ml-auto bg-gray-900 hover:bg-gray-700 text-xs text-white uppercase" type="submit"><x-icons.pencil-alt class="h-5 w-5 mr-1"></x-icons.pencil-alt> Update Category</x-inc.dynamic-btn>
     @else
-        <x-button class="mt-3"><x-icons.add-circular class="h-5 w-5 mr-1"></x-icons.add-circular> Create Category</x-button>
+        <x-inc.dynamic-btn class="ml-auto mt-3 ml-auto bg-gray-900 hover:bg-gray-700 text-xs text-white uppercase" type="submit"><x-icons.add-circular class="h-5 w-5 mr-1"></x-icons.add-circular> Create Category</x-inc.dynamic-btn>
     @endisset
 </form>

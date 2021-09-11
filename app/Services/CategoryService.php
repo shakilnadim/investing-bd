@@ -22,6 +22,11 @@ class CategoryService
         return Category::with('publishedChildCategories')->published()->whereNull('category_id')->get();
     }
 
+    public function getUserBasedCategories() : Collection
+    {
+        return Category::with('childCategories')->parentCategories()->get();
+    }
+
     public function prependPlaceholder($categories) : Collection
     {
         return add_placeholder_to_collection(

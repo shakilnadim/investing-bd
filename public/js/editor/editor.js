@@ -413,8 +413,8 @@ var editor = new (_editorjs_editorjs__WEBPACK_IMPORTED_MODULE_0___default())({
 form.addEventListener('submit', function (e) {
   e.preventDefault();
   editor.save().then(function (outputData) {
+    outputData.uuid = uuid;
     descriptionInput.value = JSON.stringify(outputData);
-    console.log('Article data: ', outputData);
     form.submit();
   });
 });

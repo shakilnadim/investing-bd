@@ -65,8 +65,8 @@ let editor = new EditorJS({
 form.addEventListener('submit', (e) => {
     e.preventDefault();
     editor.save().then((outputData) => {
+        outputData.uuid = uuid;
         descriptionInput.value = JSON.stringify(outputData);
-        console.log('Article data: ', outputData);
         form.submit();
     })
 })

@@ -20,7 +20,7 @@ class CategoryController extends Controller
 
     public function create()
     {
-        $parentCats = Category::parentCategories()->published()->get();
+        $parentCats = Category::parentCategories()->get();
         $parentCats = $this->categoryService->prependPlaceholder($parentCats);
         return view('admin.categories.create', compact('parentCats'));
     }

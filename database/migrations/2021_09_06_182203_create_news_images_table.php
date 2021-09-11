@@ -15,6 +15,7 @@ class CreateNewsImagesTable extends Migration
     {
         Schema::create('news_images', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('news_id')->nullable()->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->string('uuid');
             $table->json('paths');
             $table->timestamps();

@@ -55,5 +55,5 @@ abstract class ImageUploader
         return Str::random(10) . uniqid();
     }
 
-    abstract function uploadWIthAspectRatio($image, int $width, int $height, string $path) : bool;
+    abstract protected function uploadWIthAspectRatio($image, int $width, int $height, string $path) : bool;
 }

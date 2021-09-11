@@ -26,13 +26,14 @@ class NewsController extends Controller
 
     public function create() : View
     {
-        $categories = $this->categoryService->getUserBasedPublishedCategories();
+        $categories = $this->categoryService->getUserBasedCategories();
         $categories = $this->categoryService->prependPlaceholder($categories);
         return view('admin.news.create', compact('categories'));
     }
 
     public function store(NewsRequest $request) : RedirectResponse
     {
+        $this->newsService->storePost($request->validated());
         return redirect()->route('admin.news')->with('success', 'News created successfully!');
     }
 

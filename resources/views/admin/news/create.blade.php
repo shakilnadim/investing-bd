@@ -12,7 +12,3 @@
     <x-news.form action="{{ route('admin.news.store') }}" :categories="$categories"></x-news.form>
 
 </x-app-layout>
-
-<script type="module">
-
-</script>

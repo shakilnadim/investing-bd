@@ -7,15 +7,21 @@
                 <option value="{{ $category['id'] }}">{{ $category['name'] }}</option>
             @endforeach
         </select>
+        @error('parent_category')
+        <div class="text-red-800 text-sm">{{ $message }}</div>
+        @enderror
     </div>
 
     <div class="mt-3 sm:mt-0">
         <label for="sub-category">Sub Category</label>
         <select class="w-full rounded border-gray-300 shadow-sm mt-1" name="sub_category" id="sub-category" x-model="selectedSubCategory">
             <template x-for="category in subCategories" :key="category.id">
-                <option :value="category.id" x-text="category.name" :selected="category.id == selectedSubCategory"></option>
+                <option value="" :value="category.id" x-text="category.name" :selected="category.id == selectedSubCategory"></option>
             </template>
         </select>
+        @error('sub_category')
+        <div class="text-red-800 text-sm">{{ $message }}</div>
+        @enderror
     </div>
 
 </div>
@@ -25,26 +31,26 @@
         Alpine.data('categorySelect', () => ({
             categories: @json($categories),
             selectedCategory: '{{ old('parent_category') ?? '' }}',
-            subCategories: [{id: '', name: 'Select Sub Category'}],
+            subCategories: [],
             selectedSubCategory: '{{ old('sub_category') ?? '' }}',
             parentChanged(){
                 this.setSubCategories(this.selectedCategory);
             },
 
-            setSubCategories(parentId){
+            setSubCategories(parentId = null){
                 this.subCategories = [{id: '', name: 'Select Sub Category'}];
-                this.categories.forEach((category) => {
-                    if(parentId == category.id){
-                        this.subCategories.push(...category.published_child_categories);
-                        return;
-                    }
-                });
+                if (parentId) {
+                    this.categories.forEach((category) => {
+                        if(parentId == category.id){
+                            this.subCategories.push(...category.child_categories);
+                            return;
+                        }
+                    });
+                }
             },
 
             init() {
-                if (this.selectedCategory !== '') {
-                    this.setSubCategories(this.selectedCategory);
-                }
+                this.setSubCategories(this.selectedCategory);
             }
         }))
     })

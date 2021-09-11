@@ -26,10 +26,14 @@ class CategoryRequest extends FormRequest
      */
     public function rules() : array
     {
+        $parentCategory = function ($q){
+            return $q->where('category_id', null);
+        };
+
         $rules = [
             'name' => 'required|string',
             'slug' => 'required|string|unique:categories|alpha_dash',
-            'category_id' => 'nullable|integer|exists:categories,id',
+            'category_id' => ['nullable', 'integer', Rule::exists('categories', 'id')->where($parentCategory)],
             'meta' => 'nullable|string',
             'is_published' => 'nullable',
         ];
