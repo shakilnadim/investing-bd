@@ -4,8 +4,10 @@ namespace App\Services;
 
 use App\Adapters\Image\ImageUploader;
 use App\Consts\Image;
+use App\Facades\NewsImageServiceFacade;
 use App\Models\News;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use JetBrains\PhpStorm\ArrayShape;
 
@@ -16,7 +18,7 @@ class NewsService
 
     public function storePost(array $data) : News
     {
-        $resizedFeaturedImages = $this->uploadAndResize($data['featured_img']);
+        $resizedFeaturedImages = $this->resizeAndUpload($data['featured_img']);
         $news = new News([
             'title' => $data['title'],
             'slug' => $data['slug'],
@@ -25,12 +27,19 @@ class NewsService
             'is_published' => $data['is_published'] ?? false,
             'description' => $data['description'],
             'featured_img' => json_encode($resizedFeaturedImages),
+
         ]);
-        return auth()->user()->news()->save($news);
+
+        DB::transaction(function () use (&$news, $data){
+            $news = auth()->user()->news()->save($news);
+            NewsImageServiceFacade::removeUnusedImagesUuid(json_decode($data['description']), $news);
+        });
+
+        return $news;
     }
 
     #[ArrayShape([Image::LARGE => "string", Image::MEDIUM => "string", Image::THUMBNAIL => "string"])]
-    private function uploadAndResize($image) : array
+    private function resizeAndUpload($image) : array
     {
         $resizingDimensions = [
             config('investing.image.dimensions.'.Image::LARGE),

@@ -13,7 +13,7 @@ class InterventionImageUploader extends ImageUploader
         $image = Image::make($image)->resize($width, $height, function ($constraint) {
             $constraint->aspectRatio();
             $constraint->upsize();
-        })->encode($format);
+        })->orientate()->encode($format);
         return Storage::put($path, $image);
     }
 }

@@ -1,5 +1,6 @@
 @props(['news', 'method', 'categories'])
 
+{{--this entire form is being submitted from editor.js with submit event listener--}}
 <form {{ $attributes->merge(['method' => 'post', 'class' => 'w-full lg:w-4/6 mx-auto mt-5 news-form', 'enctype' => 'multipart/form-data']) }}>
     @csrf
     @isset($method)
@@ -19,7 +20,9 @@
     @error('description')
     <div class="text-red-800 text-sm">{{ $message }}</div>
     @enderror
+{{--    these hidden fields are being set from editor js on page load or before submission--}}
     <input type="hidden" name="description" value="{{ old('description') ?? $news->description ?? '' }}">
+    <input type="hidden" name="uuid" value="{{ old('uuid') ?? (isset($news) && $news->description ? json_decode($news->description->uuid) : '')}}">
     <x-inc.dynamic-btn class="mt-3 ml-auto bg-gray-900 hover:bg-gray-700 text-xs text-white uppercase" type="submit">
         <x-icons.add-circular class="h-5 w-5 mr-1"></x-icons.add-circular> Create News
     </x-inc.dynamic-btn>

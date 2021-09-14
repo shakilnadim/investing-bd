@@ -7,13 +7,23 @@ import ImageTool from '@editorjs/image';
 import { v4 as uuidv4 } from 'uuid';
 
 let baseUrl = 'http://127.0.0.1:8000/';
-let uuid = uuidv4();
 let form = document.querySelector('.news-form');
+// setting up uuid
+let uuid = uuidv4();
+let uuidInput = document.querySelector('input[name="uuid"]');
+if (uuidInput.value !== '') {
+    uuid = uuidInput.value;
+} else {
+    uuidInput.value = uuid;
+}
+console.log(uuidInput.value);
+// setting up data
 let descriptionInput = document.querySelector('input[name="description"]');
 let data = {};
 if (descriptionInput.value !== ''){
     data = JSON.parse(descriptionInput.value);
 }
+
 let editor = new EditorJS({
     holder: 'editor',
     placeholder: 'Let`s write an awesome story!',

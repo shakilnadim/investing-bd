@@ -354,8 +354,19 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var baseUrl = 'http://127.0.0.1:8000/';
+var form = document.querySelector('.news-form'); // setting up uuid
+
 var uuid = (0,uuid__WEBPACK_IMPORTED_MODULE_6__.default)();
-var form = document.querySelector('.news-form');
+var uuidInput = document.querySelector('input[name="uuid"]');
+
+if (uuidInput.value !== '') {
+  uuid = uuidInput.value;
+} else {
+  uuidInput.value = uuid;
+}
+
+console.log(uuidInput.value); // setting up data
+
 var descriptionInput = document.querySelector('input[name="description"]');
 var data = {};
 
