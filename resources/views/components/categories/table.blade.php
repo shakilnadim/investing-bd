@@ -1,9 +1,10 @@
 @props(['categories'])
 <div x-data="confirmationData">
-    <x-inc.table :columns="['Name', 'Parent Category', 'Status', 'Created at', 'Last updated at', 'Actions']">
+    <x-inc.table :columns="['Name', 'Slug', 'Parent Category', 'Status', 'Created at', 'Last updated at', 'Actions']">
         @foreach($categories as $category)
             <tr>
                 <td class="p-3 text-sm">{{ $category->name }}</td>
+                <td class="p-3 text-sm">{{ $category->slug }}</td>
                 <td class="p-3 text-sm">{{ $category->parentCategory->name ?? null }}</td>
                 <td class="p-3 text-sm">
                     <span class="px-1 rounded-lg {{ $category->is_published ? 'bg-green-100 text-green-900' : 'bg-pink-100 text-pink-900' }}">

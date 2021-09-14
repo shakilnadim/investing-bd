@@ -16,6 +16,14 @@ Route::prefix('news')->name('.news')->group(function (){
         Route::get('create', [NewsController::class, 'create'])->name('.create');
         Route::post('store', [NewsController::class, 'store'])->name('.store');
     });
+
+    Route::middleware('can:update,news')->group(function (){
+        Route::get('{news}/edit', [NewsController::class, 'edit'])->name('.edit');
+        Route::patch('{news}/update', [NewsController::class, 'update'])->name('.update');
+        Route::put('{news}/update/status/{status}', [NewsController::class, 'updateStatus'])->name('.update.status')->where('status', 'publish|unpublish');
+    });
+
+    Route::delete('{news}/delete', [NewsController::class, 'delete'])->name('.delete')->middleware('can:delete,news');
     Route::post('image/upload', [NewsController::class, 'uploadImage'])->name('.uploadImage');
 });
 

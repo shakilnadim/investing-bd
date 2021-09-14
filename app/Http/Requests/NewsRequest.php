@@ -46,6 +46,7 @@ class NewsRequest extends FormRequest
 
         if ($this->method() === 'PATCH') {
             $rules['slug'] = ['required', 'string', 'alpha_dash', Rule::unique('news')->ignore($this->route('news')->id)];
+            $rules['featured_img'] = 'nullable';
         }
         return $rules;
     }

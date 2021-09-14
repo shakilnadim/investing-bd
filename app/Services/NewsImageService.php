@@ -25,20 +25,20 @@ class NewsImageService
         return ['url' => Storage::url($paths[0]), Image::LARGE => $paths[0], Image::MEDIUM => $paths[1], 'id' => $savedData->id];
     }
 
-    public function removeUnusedPostImages(object $description, News $news) : Collection | null
+    public function removeUnusedNewsImages(object $description, News $news, bool $createRelationship = true) : Collection | null
     {
         $images = $this->getImagesByUuid($description->uuid);
         if($images->count() === 0) return null;
         $usedImageIds = $this->getUsedImageIds($description->blocks);
 
-        return $images->filter(function ($value, $key) use ($usedImageIds, $news){
+        return $images->filter(function ($value, $key) use ($usedImageIds, $news, $createRelationship){
             if(!isset($usedImageIds[$value->id])){
                 $this->removeFromDisk(json_decode($value->paths));
                 $this->removeFromDb($value);
                 return false;
             }
 
-            $this->createRelationshipWithNews($value, $news);
+            if ($createRelationship) $this->createRelationshipWithNews($value, $news);
             return true;
         });
     }

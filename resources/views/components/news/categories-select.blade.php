@@ -1,4 +1,4 @@
-@props(['categories'])
+@props(['categories', 'news' => null])
 <div {{ $attributes->merge(['class' => "sm:grid grid-cols-2 gap-2 mt-3"]) }}  x-data="categorySelect">
     <div>
         <label for="parent-category">Parent Category</label>
@@ -30,9 +30,9 @@
     document.addEventListener('alpine:init', () => {
         Alpine.data('categorySelect', () => ({
             categories: @json($categories),
-            selectedCategory: '{{ old('parent_category') ?? '' }}',
+            selectedCategory: '{{ old('parent_category') ?? $news->category->parentCategory->id ?? $news->category->id ?? '' }}',
             subCategories: [],
-            selectedSubCategory: '{{ old('sub_category') ?? '' }}',
+            selectedSubCategory: '{{ old('sub_category') ?? isset($news->category->parentCategory->id) ? $news->category->id : '' }}',
             parentChanged(){
                 this.setSubCategories(this.selectedCategory);
             },

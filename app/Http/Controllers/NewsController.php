@@ -20,7 +20,7 @@ class NewsController extends Controller
 
     public function index() : View
     {
-        $news = News::with('category')->orderBy('id')->cursorPaginate(10);
+        $news = News::with('category', 'category.parentCategory', 'author')->orderBy('id', 'desc')->cursorPaginate(10);
         return view('admin.news.index', compact('news'));
     }
 
@@ -33,8 +33,33 @@ class NewsController extends Controller
 
     public function store(NewsRequest $request) : RedirectResponse
     {
-        $this->newsService->storePost($request->validated());
+        $this->newsService->storeNews($request->validated());
         return redirect()->route('admin.news')->with('success', 'News created successfully!');
+    }
+
+    public function edit(News $news) : View
+    {
+        $categories = $this->categoryService->getUserBasedCategories();
+        $categories = $this->categoryService->prependPlaceholder($categories);
+        return view('admin.news.edit', compact('news', 'categories'));
+    }
+
+    public function update(NewsRequest $request, News $news) : RedirectResponse
+    {
+        $this->newsService->updateNews($news, $request->validated());
+        return redirect()->route('admin.news')->with('success', 'News updated successfully!');
+    }
+
+    public function delete(News $news) : RedirectResponse
+    {
+        $news->delete();
+        return redirect()->back()->with('success', 'News deleted successfully!');
+    }
+
+    public function updateStatus(News $news, $status) : RedirectResponse
+    {
+        $this->newsService->updateStatus($news, $status);
+        return redirect()->back()->with('success', 'News status updated successfully!');
     }
 
     public function uploadImage(ImageRequest $request) : JsonResponse
