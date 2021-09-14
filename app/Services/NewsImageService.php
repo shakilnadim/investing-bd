@@ -25,7 +25,7 @@ class NewsImageService
         return ['url' => Storage::url($paths[0]), Image::LARGE => $paths[0], Image::MEDIUM => $paths[1], 'id' => $savedData->id];
     }
 
-    public function removeUnusedImagesUuid(object $description, News $news) : Collection | null
+    public function removeUnusedPostImages(object $description, News $news) : Collection | null
     {
         $images = $this->getImagesByUuid($description->uuid);
         if($images->count() === 0) return null;

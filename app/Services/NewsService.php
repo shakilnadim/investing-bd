@@ -32,7 +32,7 @@ class NewsService
 
         DB::transaction(function () use (&$news, $data){
             $news = auth()->user()->news()->save($news);
-            NewsImageServiceFacade::removeUnusedImagesUuid(json_decode($data['description']), $news);
+            NewsImageServiceFacade::removeUnusedPostImages(json_decode($data['description']), $news);
         });
 
         return $news;
