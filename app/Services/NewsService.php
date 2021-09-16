@@ -18,7 +18,7 @@ class NewsService
 
     public function storeNews(array $data) : News
     {
-        $resizedFeaturedImages = $this->resizeAndUpload($data['featured_img']);
+        $resizedFeaturedImages = $this->resizeAndUploadFeaturedImg($data['featured_img']);
         $news = new News([
             'title' => $data['title'],
             'slug' => $data['slug'],
@@ -40,7 +40,7 @@ class NewsService
     public function updateNews(News $news, array $data) : News
     {
         if (isset($data['featured_img'])) {
-            $data['featured_img'] = $this->resizeAndUpload($data['featured_img']);
+            $data['featured_img'] = $this->resizeAndUploadFeaturedImg($data['featured_img']);
             $this->removeFeaturedImage($news);
         }
         NewsImageServiceFacade::removeUnusedNewsImages(json_decode($data['description']), $news);
@@ -60,16 +60,17 @@ class NewsService
         return $news->update(['is_published' => $updatedStatus]);
     }
 
-    #[ArrayShape([Image::LARGE => "string", Image::MEDIUM => "string", Image::THUMBNAIL => "string"])]
-    private function resizeAndUpload($image) : array
+    #[ArrayShape([Image::LARGE => "string", Image::MEDIUM => "string", Image::THUMBNAIL => "string",  Image::XS => "string"])]
+    private function resizeAndUploadFeaturedImg($image) : array
     {
         $resizingDimensions = [
             config('investing.image.dimensions.'.Image::LARGE),
             config('investing.image.dimensions.'.Image::MEDIUM),
             config('investing.image.dimensions.'.Image::THUMBNAIL),
+            config('investing.image.dimensions.'.Image::XS),
         ];
         $resizedFeaturedImages = $this->imageUploader->resizeWithAspectRatio($image, $resizingDimensions, 'news/featured');
-        return [Image::LARGE => $resizedFeaturedImages[0], Image::MEDIUM => $resizedFeaturedImages[1], Image::THUMBNAIL => $resizedFeaturedImages[2]];
+        return [Image::LARGE => $resizedFeaturedImages[0], Image::MEDIUM => $resizedFeaturedImages[1], Image::THUMBNAIL => $resizedFeaturedImages[2], Image::XS => $resizedFeaturedImages[3]];
     }
 
     private function removeFeaturedImage(News $news) : bool

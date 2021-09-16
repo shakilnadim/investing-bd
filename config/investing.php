@@ -15,6 +15,7 @@ return [
             Image::LARGE => '1000x600',
             Image::MEDIUM => '650x450',
             Image::THUMBNAIL => '250x150',
+            Image::XS => '60x45',
         ]
     ]
 ];
