@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Models\News;
+use App\Rules\EditorJsRequired;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Validation\Rule;
@@ -41,7 +42,7 @@ class NewsRequest extends FormRequest
             'meta' => 'nullable|string',
             'is_published' => 'nullable',
             'featured_img' => 'required|image|max:5000',
-            'description' => 'required|string',
+            'description' => ['required', 'string', new EditorJsRequired],
         ];
 
         if ($this->method() === 'PATCH') {
