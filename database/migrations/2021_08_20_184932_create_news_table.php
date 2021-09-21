@@ -23,6 +23,9 @@ class CreateNewsTable extends Migration
             $table->string('featured_img');
             $table->text('meta')->nullable();
             $table->boolean('is_published')->default(false);
+            $table->boolean('is_featured')->default(false);
+            $table->timestamp('publish_date_start');
+            $table->timestamp('publish_date_end');
             $table->timestamps();
             $table->softDeletes();
         });

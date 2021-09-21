@@ -27,7 +27,7 @@ class EditorJsRequired implements Rule
     {
         $value = json_decode($value);
         if (count($value->blocks) === 0) return false;
-        
+
         foreach ($value->blocks as $block){
 //          this is calling the validate methods of this class for particular block types and returning true,
 //          if method returns true. if false it will continue to loop through the whole blocks array
