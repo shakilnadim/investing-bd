@@ -49,7 +49,10 @@ class NewsService
         NewsImageServiceFacade::removeUnusedNewsImages(json_decode($data['description']), $news);
 
         $data['is_published'] = $data['is_published'] ?? false;
+        $data['is_featured'] = $data['is_featured'] ?? false;
         $data['category_id'] = $this->getCategoryId($data);
+        $data['start_date'] = get_start_of_date_timestamp($data['start_date']);
+        $data['end_date'] = get_start_of_date_timestamp($data['end_date']);
 
         $news->update($data);
 
