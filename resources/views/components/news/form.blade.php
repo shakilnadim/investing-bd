@@ -20,10 +20,11 @@
     <x-form.textarea label="Meta" labelFor="meta" name="meta" value="{{ old('meta') ?? $news->meta ?? '' }}" class="mt-3"></x-form.textarea>
     <x-form.img label="Upload Featured Image" labelFor="featured-img" name="featured_img" src="{{ json_decode($news?->featured_img)->thumbnail ?? null }}" class="mt-3"></x-form.img>
     <div class="sm:grid grid-cols-2 gap-2 mt-3">
-        <x-form.date-picker label="Start date" labelFor="start-date" class="mt-3"></x-form.date-picker>
-        <x-form.date-picker label="End date" labelFor="end-date" class="mt-3"></x-form.date-picker>
+        <x-form.date-picker label="Start date" labelFor="start-date" name="start_date" value="{{ old('start_date') ?? $news->start_date ?? '' }}"></x-form.date-picker>
+        <x-form.date-picker label="End date" labelFor="end-date" name="end_date" value="{{ old('end_date') ?? $news->end_date ?? '' }}"></x-form.date-picker>
     </div>
     <x-form.checkbox label="Publish this news" labelFor="is-published" name="is_published" :value="1" :checked="old('is_published') == 1 || (isset($news) && $news->is_published)" class="mt-4"></x-form.checkbox>
+    <x-form.checkbox label="Featured news" labelFor="is-featured" name="is_featured" :value="1" :checked="old('is_featured') == 1 || (isset($news) && $news->is_featured)" class="mt-4"></x-form.checkbox>
     <p class="mt-3">Description</p>
     <div id="editor" class="mt-2 rounded border p-4"></div>
     @error('description')

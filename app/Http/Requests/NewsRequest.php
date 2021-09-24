@@ -41,8 +41,13 @@ class NewsRequest extends FormRequest
             'sub_category' => ['nullable', 'integer', Rule::exists('categories', 'id')->where($parentsChildCategory)],
             'meta' => 'nullable|string',
             'is_published' => 'nullable',
+            'is_featured' => 'nullable',
             'featured_img' => 'required|image|max:5000',
             'description' => ['required', 'string', new EditorJsRequired],
+            'start_date' => ['required', 'date_format:Y-m-d'],
+            'end_date' => ['required', 'date_format:Y-m-d', function($attribute, $value, $fail) {
+                if (strtotime($value) < strtotime($this->start_date)) $fail('The end date can not be smaller than start date');
+            }],
         ];
 
         if ($this->method() === 'PATCH') {

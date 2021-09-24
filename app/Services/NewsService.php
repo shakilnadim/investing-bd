@@ -25,8 +25,11 @@ class NewsService
             'category_id' => $this->getCategoryId($data),
             'meta' => $data['meta'],
             'is_published' => $data['is_published'] ?? false,
+            'is_featured' => $data['is_featured'] ?? false,
             'description' => $data['description'],
             'featured_img' => json_encode($resizedFeaturedImages),
+            'start_date' => get_start_of_date_timestamp($data['start_date']),
+            'end_date' => get_end_of_date_timestamp($data['start_date']),
         ]);
 
         DB::transaction(function () use (&$news, $data){

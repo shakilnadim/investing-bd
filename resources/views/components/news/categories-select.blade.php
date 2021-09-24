@@ -32,7 +32,7 @@
             categories: @json($categories),
             selectedCategory: '{{ old('parent_category') ?? $news->category->parentCategory->id ?? $news->category->id ?? '' }}',
             subCategories: [],
-            selectedSubCategory: '{{ old('sub_category') ?? isset($news->category->parentCategory->id) ? $news->category->id : '' }}',
+            selectedSubCategory: '{{ old('sub_category') ?? (isset($news->category->parentCategory->id) ? $news->category->id : '') }}',
             parentChanged(){
                 this.setSubCategories(this.selectedCategory);
             },

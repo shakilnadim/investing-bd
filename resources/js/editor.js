@@ -16,7 +16,7 @@ if (uuidInput.value !== '') {
 } else {
     uuidInput.value = uuid;
 }
-console.log(uuidInput.value);
+
 // setting up data
 let descriptionInput = document.querySelector('input[name="description"]');
 let data = {};

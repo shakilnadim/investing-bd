@@ -363,9 +363,8 @@ if (uuidInput.value !== '') {
   uuid = uuidInput.value;
 } else {
   uuidInput.value = uuid;
-}
+} // setting up data
 
-console.log(uuidInput.value); // setting up data
 
 var descriptionInput = document.querySelector('input[name="description"]');
 var data = {};
