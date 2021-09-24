@@ -29,7 +29,7 @@ class NewsService
             'description' => $data['description'],
             'featured_img' => json_encode($resizedFeaturedImages),
             'start_date' => get_start_of_date_timestamp($data['start_date']),
-            'end_date' => get_end_of_date_timestamp($data['start_date']),
+            'end_date' => get_end_of_date_timestamp($data['end_date']),
         ]);
 
         DB::transaction(function () use (&$news, $data){
