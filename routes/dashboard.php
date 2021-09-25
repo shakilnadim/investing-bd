@@ -8,7 +8,7 @@ use App\Models\User;
 use App\Models\News;
 
 
-Route::view('dashboard', 'dashboard')->name('.dashboard');
+Route::view('dashboard', 'admin.dashboard')->name('.dashboard');
 
 Route::prefix('news')->name('.news')->group(function (){
     Route::get('', [NewsController::class, 'index'])->middleware('can:view-list,' . News::class);

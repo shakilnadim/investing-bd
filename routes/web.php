@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\VisitorController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,9 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-
 require __DIR__.'/auth.php';
+
+Route::get('/', [VisitorController::class, 'index'])->name('home');
+Route::get('category/{category:slug}', [VisitorController::class, 'category'])->name('visitor.category');

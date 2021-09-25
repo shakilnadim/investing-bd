@@ -17,14 +17,14 @@ class CategoryService
         return $category->update(['is_published' => $updatedStatus]);
     }
 
-    public function getUserBasedPublishedCategories() : Collection
-    {
-        return Category::with('publishedChildCategories')->published()->whereNull('category_id')->get();
-    }
-
     public function getUserBasedCategories() : Collection
     {
         return Category::with('childCategories')->parentCategories()->get();
+    }
+
+    public function getPublishedParentCategories() : Collection
+    {
+        return Category::parentCategories()->published()->get();
     }
 
     public function prependPlaceholder($categories) : Collection
