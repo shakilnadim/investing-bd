@@ -51,9 +51,9 @@ class NewsService
         return $news->update(['is_published' => $updatedStatus]);
     }
 
-    public function getLatestPublishedFeaturedNews($count) : Collection
+    public function getLatestPublishedFeaturedNews($limit) : Collection
     {
-        return $this->news->featured()->published()->orderBy('id', 'desc')->get();
+        return $this->news->featured()->published()->betweenStartEndDate()->orderBy('id', 'desc')->limit($limit)->get();
     }
 
     #[ArrayShape([Image::LARGE => "string", Image::MEDIUM => "string", Image::THUMBNAIL => "string",  Image::XS => "string"])]
@@ -86,7 +86,7 @@ class NewsService
         $data['is_featured'] = $data['is_featured'] ?? false;
         $data['category_id'] = $this->getCategoryId($data);
         $data['start_date'] = get_start_of_date_timestamp($data['start_date']);
-        $data['end_date'] = get_start_of_date_timestamp($data['end_date']);
+        $data['end_date'] = get_end_of_date_timestamp($data['end_date']);
         return $data;
     }
 }

@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Carbon;
 
 class News extends Model
 {
@@ -26,6 +27,7 @@ class News extends Model
     public function scopePublished($q)
     {
         $q->with('category', 'category.parentCategory')
+            ->where('is_published', true)
             ->whereHas('category', function ($q) {
                 $q->published();
             })
@@ -40,5 +42,11 @@ class News extends Model
     public function scopeFeatured($q)
     {
         $q->where('is_featured', true);
+    }
+
+    public function scopeBetweenStartEndDate($q)
+    {
+        $q->where('start_date', '<=', Carbon::now())
+            ->where('end_date', '>=', Carbon::now());
     }
 }
