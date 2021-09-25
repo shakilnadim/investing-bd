@@ -24,7 +24,7 @@ class CategoryService
 
     public function getPublishedParentCategories() : Collection
     {
-        return Category::parentCategories()->published()->get();
+        return $this->category->parentCategories()->published()->get();
     }
 
     public function prependPlaceholder($categories) : Collection

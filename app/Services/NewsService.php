@@ -18,19 +18,9 @@ class NewsService
 
     public function storeNews(array $data) : News
     {
-        $resizedFeaturedImages = $this->resizeAndUploadFeaturedImg($data['featured_img']);
-        $news = new News([
-            'title' => $data['title'],
-            'slug' => $data['slug'],
-            'category_id' => $this->getCategoryId($data),
-            'meta' => $data['meta'],
-            'is_published' => $data['is_published'] ?? false,
-            'is_featured' => $data['is_featured'] ?? false,
-            'description' => $data['description'],
-            'featured_img' => json_encode($resizedFeaturedImages),
-            'start_date' => get_start_of_date_timestamp($data['start_date']),
-            'end_date' => get_end_of_date_timestamp($data['end_date']),
-        ]);
+        $data['featured_img'] = $this->resizeAndUploadFeaturedImg($data['featured_img']);
+        $data = $this->makeFormattedData($data);
+        $news = new News($data);
 
         DB::transaction(function () use (&$news, $data){
             $news = auth()->user()->news()->save($news);
@@ -48,12 +38,7 @@ class NewsService
         }
         NewsImageServiceFacade::removeUnusedNewsImages(json_decode($data['description']), $news);
 
-        $data['is_published'] = $data['is_published'] ?? false;
-        $data['is_featured'] = $data['is_featured'] ?? false;
-        $data['category_id'] = $this->getCategoryId($data);
-        $data['start_date'] = get_start_of_date_timestamp($data['start_date']);
-        $data['end_date'] = get_start_of_date_timestamp($data['end_date']);
-
+        $data = $this->makeFormattedData($data);
         $news->update($data);
 
         return $news;
@@ -64,6 +49,11 @@ class NewsService
         if ($status === 'publish') $updatedStatus = true;
         else $updatedStatus = false;
         return $news->update(['is_published' => $updatedStatus]);
+    }
+
+    public function getLatestPublishedFeaturedNews($count) : Collection
+    {
+        return $this->news->featured()->published()->orderBy('id', 'desc')->get();
     }
 
     #[ArrayShape([Image::LARGE => "string", Image::MEDIUM => "string", Image::THUMBNAIL => "string",  Image::XS => "string"])]
@@ -88,5 +78,15 @@ class NewsService
     private function getCategoryId(array $data) : int
     {
         return $data['sub_category'] ?? $data['parent_category'];
+    }
+
+    private function makeFormattedData(array $data) : array
+    {
+        $data['is_published'] = $data['is_published'] ?? false;
+        $data['is_featured'] = $data['is_featured'] ?? false;
+        $data['category_id'] = $this->getCategoryId($data);
+        $data['start_date'] = get_start_of_date_timestamp($data['start_date']);
+        $data['end_date'] = get_start_of_date_timestamp($data['end_date']);
+        return $data;
     }
 }

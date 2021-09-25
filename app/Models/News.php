@@ -22,4 +22,23 @@ class News extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
+
+    public function scopePublished($q)
+    {
+        $q->with('category', 'category.parentCategory')
+            ->whereHas('category', function ($q) {
+                $q->published();
+            })
+            ->where(function ($q){
+                $q->whereHas('category.parentCategory', function ($q){
+                    $q->published();
+                })
+                    ->orDoesntHave('category.parentCategory');
+            });
+    }
+
+    public function scopeFeatured($q)
+    {
+        $q->where('is_featured', true);
+    }
 }
