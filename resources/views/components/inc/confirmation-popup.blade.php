@@ -1,4 +1,4 @@
-<div class="fixed bg-gray-700 bg-opacity-50 top-0 left-0 w-full h-full" @click.self="showConfirmationPopup=false">
+<div class="fixed bg-gray-700 bg-opacity-50 top-0 left-0 w-full h-full z-10" @click.self="showConfirmationPopup=false">
     <div class="fixed p-5 bg-white border rounded left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">
         <p x-text="message" class="text-lg"></p>
         <div class="flex justify-center items-center gap-2 mt-3">
