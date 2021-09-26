@@ -16,6 +16,7 @@ class CategorySeeder extends Seeder
     public function run()
     {
         Category::insert($this->setAndGetCategories());
+        Category::factory()->times(10)->create();
     }
 
     private function setAndGetCategories() : array
@@ -50,7 +51,7 @@ class CategorySeeder extends Seeder
                 'name' => 'খেলাধুলা',
                 'slug' => 'খেলাধুলা',
                 'category_id' => null,
-                'is_published' => 0,
+                'is_published' => 1,
                 'created_at' => $timestamp,
                 'updated_at' => $timestamp,
             ],
@@ -58,7 +59,7 @@ class CategorySeeder extends Seeder
                 'name' => 'ক্রিকেট',
                 'slug' => 'ক্রিকেট',
                 'category_id' => 4,
-                'is_published' => 0,
+                'is_published' => 1,
                 'created_at' => $timestamp,
                 'updated_at' => $timestamp,
             ],
