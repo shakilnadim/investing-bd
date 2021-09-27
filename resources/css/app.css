@@ -12,4 +12,7 @@
     #editor h4{
         @apply text-lg font-bold;
     }
+    .h-50{
+        height: 11.75rem;
+    }
 }

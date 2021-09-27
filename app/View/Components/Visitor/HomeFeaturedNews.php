@@ -3,19 +3,23 @@
 namespace App\View\Components\Visitor;
 
 use App\Services\NewsService;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\View\Component;
 
 class HomeFeaturedNews extends Component
 {
-    /**
-     * Create a new component instance.
-     *
-     * @return void
-     */
-    public function __construct(private NewsService $newsService)
-    {}
+    public function __construct(private NewsService $newsService, public Collection $featuredNewsList)
+    {
+        $this->featuredNewsList = $this->getFeaturedNewsList();
+    }
 
-    public function featuredNewsList()
+    public function restOfFeaturedNews() : Collection
+    {
+        $this->featuredNewsList->shift();
+        return $this->featuredNewsList;
+    }
+
+    private function getFeaturedNewsList() : Collection
     {
         return $this->newsService->getLatestPublishedFeaturedNews(5);
     }

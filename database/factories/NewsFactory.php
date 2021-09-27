@@ -26,8 +26,8 @@ class NewsFactory extends Factory
     {
         $title = $this->faker->unique()->text(50);
         $imgId = $this->faker->numberBetween(1,1000);
-        $startDate = Carbon::create(2021, rand(1, 10), 28, 0, 0, 0);
-        $endDate = $startDate->addWeeks(rand(1,20));
+        $startDate = $endDate = Carbon::create(2021, rand(6, 9), 28);
+
         return [
             'title' => $title,
             'slug' => Str::slug($title),
@@ -36,7 +36,7 @@ class NewsFactory extends Factory
             'is_published' => $this->faker->boolean,
             'is_featured' => $this->faker->boolean,
             'start_date' => $startDate->format('Y-m-d H:i:s'),
-            'end_date' => $endDate->format('Y-m-d H:i:s'),
+            'end_date' => $endDate->addWeeks(rand(2,20))->format('Y-m-d H:i:s'),
             'description' => json_encode([
                 'version' => '2.22.2',
                 'uuid' => $this->faker->uuid,
@@ -51,12 +51,14 @@ class NewsFactory extends Factory
                     ]
                 ],
             ]),
+            'short_description' => $this->faker->text(50),
             'featured_img' => json_encode([
                 Image::LARGE => "https://picsum.photos/id/$imgId/1000/600",
-                Image::MEDIUM => "https://picsum.photos/id/$imgId/650/450",
-                Image::THUMBNAIL => "https://picsum.photos/id/$imgId/250/150",
+                Image::MEDIUM => "https://picsum.photos/id/$imgId/760/450",
+                Image::THUMBNAIL => "https://picsum.photos/id/$imgId/380/200",
                 Image::XS => "https://picsum.photos/id/$imgId/60/45"
             ]),
+            'featured_img_alt' => $this->faker->text(10),
         ];
     }
 }

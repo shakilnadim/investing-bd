@@ -20,7 +20,10 @@
 <body>
 <div class="font-sans text-gray-900 antialiased">
     <x-inc.VisitorNav></x-inc.VisitorNav>
-    {{ $slot }}
+
+    <div class="container mx-auto">
+        {{ $slot }}
+    </div>
 </div>
 </body>
 </html>

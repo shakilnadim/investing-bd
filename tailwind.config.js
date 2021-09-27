@@ -15,6 +15,13 @@ module.exports = {
             colors: {
                 primary: {
                     DEFAULT: '#FCAC10',
+                },
+                grayOverlay: {
+                    '900': {
+                        DEFAULT: 'rgba(17,24,39,0.5)',
+                        lighter: 'rgba(17,24,39,0.3)'
+                    },
+                    '300': 'rgba(203,213,225,0)'
                 }
             }
         },
