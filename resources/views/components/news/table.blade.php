@@ -1,11 +1,11 @@
 @props(['news'])
 <div x-data="confirmationData">
-    <x-inc.table :columns="['Title', 'Slug', 'Parent Category', 'Sub Category', 'Status', 'Author', 'Created at', 'Last updated at', 'Actions']">
+    <x-inc.table :columns="['Title', 'Slug', 'Parent Category', 'Sub Category', 'Status', 'Is Featured', 'Author', 'Actions']">
         @foreach($news as $singleNews)
             <tr>
                 <td class="p-3 text-sm">
                     <div class="flex items-center gap-1">
-                        <img src="{{ Storage::url(json_decode($singleNews->featured_img)->xs) }}" alt="">
+                        <img src="{{ json_decode($singleNews->featured_img)->xs }}" alt="">
                         <p>{{ $singleNews->title }}</p>
                     </div>
                 </td>
@@ -17,9 +17,8 @@
                         {{ $singleNews->is_published ? 'Published' : 'Unpublished' }}
                     </span>
                 </td>
+                <td class="p-3 text-sm">{{ $singleNews->is_featured }}</td>
                 <td class="p-3 text-sm">{{ $singleNews->author->name }}</td>
-                <td class="p-3 text-sm">{{ $singleNews->created_at->diffForHumans() }}</td>
-                <td class="p-3 text-sm">{{ $singleNews->updated_at->diffForHumans() }}</td>
                 <td class="p-3 text-sm">
                     <div class="flex items-center gap-2">
                         <x-inc.dynamic-btn-link link="{{ route('admin.news.edit', ['news' => $singleNews->id]) }}" class="bg-blue-200 hover:bg-blue-400 text-blue-900">
