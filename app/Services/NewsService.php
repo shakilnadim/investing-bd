@@ -18,7 +18,7 @@ class NewsService
 
     public function storeNews(array $data) : News
     {
-        $data['featured_img'] = $this->resizeAndUploadFeaturedImg($data['featured_img']);
+        $data['featured_img'] = json_encode($this->resizeAndUploadFeaturedImg($data['featured_img']));
         $data = $this->makeFormattedData($data);
         $news = new News($data);
 
@@ -33,7 +33,7 @@ class NewsService
     public function updateNews(News $news, array $data) : News
     {
         if (isset($data['featured_img'])) {
-            $data['featured_img'] = $this->resizeAndUploadFeaturedImg($data['featured_img']);
+            $data['featured_img'] = json_encode($this->resizeAndUploadFeaturedImg($data['featured_img']));
             $this->removeFeaturedImage($news);
         }
         NewsImageServiceFacade::removeUnusedNewsImages(json_decode($data['description']), $news);
