@@ -19,9 +19,9 @@
 </head>
 <body>
 <div class="font-sans text-gray-900 antialiased">
-    <x-inc.VisitorNav></x-inc.VisitorNav>
+    <x-Visitor.VisitorNav></x-Visitor.VisitorNav>
 
-    <div class="container mx-auto">
+    <div class="md:container mx-auto">
         {{ $slot }}
     </div>
 </div>

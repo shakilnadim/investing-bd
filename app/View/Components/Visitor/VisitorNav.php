@@ -1,6 +1,6 @@
 <?php
 
-namespace App\View\Components\Inc;
+namespace App\View\Components\Visitor;
 
 use App\Services\CategoryService;
 use Illuminate\Support\Collection;
@@ -25,6 +25,6 @@ class VisitorNav extends Component
 
     public function render() : View
     {
-        return view('components.inc.visitor-nav');
+        return view('components.visitor.visitor-nav');
     }
 }

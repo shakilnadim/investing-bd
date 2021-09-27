@@ -6446,6 +6446,10 @@ select {
   height: 8rem;
 }
 
+.h-34 {
+  height: 8.75rem;
+}
+
 .h-36 {
   height: 9rem;
 }
@@ -6460,6 +6464,10 @@ select {
 
 .h-48 {
   height: 12rem;
+}
+
+.h-50 {
+  height: 11.75rem;
 }
 
 .h-52 {
@@ -32771,10 +32779,6 @@ select {
   font-weight: 700;
 }
 
-.h-50{
-  height: 11.75rem;
-}
-
 @media (min-width: 640px) {
   .sm\:container {
     width: 100%;
@@ -38462,6 +38466,10 @@ select {
     height: 8rem;
   }
 
+  .sm\:h-34 {
+    height: 8.75rem;
+  }
+
   .sm\:h-36 {
     height: 9rem;
   }
@@ -38476,6 +38484,10 @@ select {
 
   .sm\:h-48 {
     height: 12rem;
+  }
+
+  .sm\:h-50 {
+    height: 11.75rem;
   }
 
   .sm\:h-52 {
@@ -70378,6 +70390,10 @@ select {
     height: 8rem;
   }
 
+  .md\:h-34 {
+    height: 8.75rem;
+  }
+
   .md\:h-36 {
     height: 9rem;
   }
@@ -70392,6 +70408,10 @@ select {
 
   .md\:h-48 {
     height: 12rem;
+  }
+
+  .md\:h-50 {
+    height: 11.75rem;
   }
 
   .md\:h-52 {
@@ -102294,6 +102314,10 @@ select {
     height: 8rem;
   }
 
+  .lg\:h-34 {
+    height: 8.75rem;
+  }
+
   .lg\:h-36 {
     height: 9rem;
   }
@@ -102308,6 +102332,10 @@ select {
 
   .lg\:h-48 {
     height: 12rem;
+  }
+
+  .lg\:h-50 {
+    height: 11.75rem;
   }
 
   .lg\:h-52 {
@@ -134210,6 +134238,10 @@ select {
     height: 8rem;
   }
 
+  .xl\:h-34 {
+    height: 8.75rem;
+  }
+
   .xl\:h-36 {
     height: 9rem;
   }
@@ -134224,6 +134256,10 @@ select {
 
   .xl\:h-48 {
     height: 12rem;
+  }
+
+  .xl\:h-50 {
+    height: 11.75rem;
   }
 
   .xl\:h-52 {
@@ -166126,6 +166162,10 @@ select {
     height: 8rem;
   }
 
+  .\32xl\:h-34 {
+    height: 8.75rem;
+  }
+
   .\32xl\:h-36 {
     height: 9rem;
   }
@@ -166140,6 +166180,10 @@ select {
 
   .\32xl\:h-48 {
     height: 12rem;
+  }
+
+  .\32xl\:h-50 {
+    height: 11.75rem;
   }
 
   .\32xl\:h-52 {
