@@ -25,6 +25,7 @@
     </div>
     <x-form.checkbox label="Publish this news" labelFor="is-published" name="is_published" :value="1" :checked="old('is_published') == 1 || (isset($news) && $news->is_published)" class="mt-4"></x-form.checkbox>
     <x-form.checkbox label="Featured news" labelFor="is-featured" name="is_featured" :value="1" :checked="old('is_featured') == 1 || (isset($news) && $news->is_featured)" class="mt-4"></x-form.checkbox>
+    <x-form.text label="Short Description" labelFor="short-description" name="short_description" value="{{ old('short_description') ?? $news->short_description ?? '' }}"></x-form.text>
     <p class="mt-3">Description</p>
     <div id="editor" class="mt-2 rounded border p-4"></div>
     @error('description')

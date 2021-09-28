@@ -20,7 +20,7 @@ class NewsController extends Controller
 
     public function index() : View
     {
-        $news = News::with('category', 'category.parentCategory', 'author')->orderBy('id', 'desc')->cursorPaginate(10);
+        $news = News::with('category', 'category.parentCategory', 'author')->latest('id')->cursorPaginate(10);
         return view('admin.news.index', compact('news'));
     }
 

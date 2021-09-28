@@ -53,7 +53,7 @@ class NewsService
 
     public function getLatestPublishedFeaturedNews($limit) : Collection
     {
-        return $this->news->with('category')->featured()->published()->betweenStartEndDate()->orderBy('id', 'desc')->limit($limit)->get();
+        return $this->news->with('category')->featured()->published()->betweenStartEndDate()->latest('id')->limit($limit)->get();
     }
 
     #[ArrayShape([Image::LARGE => "string", Image::MEDIUM => "string", Image::THUMBNAIL => "string",  Image::XS => "string"])]
