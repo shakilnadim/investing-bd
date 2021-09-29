@@ -25,8 +25,11 @@ class VisitorController extends Controller
         return view('visitor.category', compact('category'));
     }
 
-    public function news(News $news)
+    public function news(News $news) : View
     {
-        return $news;
+        //todo
+//        check if news is published
+
+        return view('visitor.news', compact('news'));
     }
 }
