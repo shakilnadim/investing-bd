@@ -1,7 +1,7 @@
 @props(['categories', 'news' => null])
 <div {{ $attributes->merge(['class' => "sm:grid grid-cols-2 gap-2 mt-3"]) }}  x-data="categorySelect">
     <div>
-        <label for="parent-category">Parent Category</label>
+        <label for="parent-category">Parent Category *</label>
         <select class="w-full rounded border-gray-300 shadow-sm mt-1" name="parent_category" id="parent-category" x-model="selectedCategory" @change="parentChanged()">
             @foreach($categories as $category)
                 <option value="{{ $category['id'] }}">{{ $category['name'] }}</option>

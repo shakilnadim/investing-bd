@@ -43,7 +43,9 @@ class NewsRequest extends FormRequest
             'is_published' => 'nullable',
             'is_featured' => 'nullable',
             'featured_img' => 'required|image|max:5000',
+            'featured_img_alt' => 'nullable|string',
             'description' => ['required', 'string', new EditorJsRequired],
+            'short_description' => 'required|string|max:100',
             'start_date' => ['required', 'date_format:Y-m-d'],
             'end_date' => ['required', 'date_format:Y-m-d', function($attribute, $value, $fail) {
                 if (strtotime($value) < strtotime($this->start_date)) $fail('The end date can not be smaller than start date');
