@@ -4,12 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\News;
+use App\Services\CategoryService;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class VisitorController extends Controller
 {
-    public function __construct()
+    public function __construct(private CategoryService $categoryService)
     {
     }
 
@@ -20,6 +21,7 @@ class VisitorController extends Controller
 
     public function category(Category $category) : View
     {
+        if (!$this->categoryService->isPublished($category)) abort(404);
         return view('visitor.category', compact('category'));
     }
 

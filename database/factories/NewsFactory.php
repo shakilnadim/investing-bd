@@ -51,7 +51,7 @@ class NewsFactory extends Factory
                     ]
                 ],
             ]),
-            'short_description' => $this->faker->text(50),
+            'short_description' => $this->faker->text(100),
             'featured_img' => json_encode([
                 Image::LARGE => "https://picsum.photos/id/$imgId/1000/600",
                 Image::MEDIUM => "https://picsum.photos/id/$imgId/760/450",

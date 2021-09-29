@@ -7,7 +7,7 @@ use Illuminate\Support\Collection;
 use Illuminate\View\Component;
 use Illuminate\View\View;
 
-class VisitorNav extends Component
+class Nav extends Component
 {
     /**
      * Create a new component instance.
@@ -25,6 +25,6 @@ class VisitorNav extends Component
 
     public function render() : View
     {
-        return view('components.visitor.visitor-nav');
+        return view('components.visitor.nav');
     }
 }

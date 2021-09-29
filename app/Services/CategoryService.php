@@ -35,4 +35,13 @@ class CategoryService
             'name'
         );
     }
+
+    public function isPublished(Category $category)
+    {
+        $isPublished = $category->is_published;
+        if ($category->category_id) {
+            $isPublished = $category->parentCategory->is_published;
+        }
+        return $isPublished;
+    }
 }

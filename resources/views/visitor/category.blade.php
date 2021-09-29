@@ -1,3 +1,3 @@
-<x-visitor-layout>
+<x-VisitorLayout :category="$category">
     <x-slot name="title"> {{ $category->name }} | Investing BD</x-slot>
-</x-visitor-layout>
+</x-VisitorLayout>

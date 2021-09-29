@@ -6,21 +6,22 @@ use Illuminate\View\Component;
 
 class VisitorLayout extends Component
 {
-    /**
-     * Create a new component instance.
-     *
-     * @return void
-     */
-    public function __construct()
+    public function __construct(public $category = null, public $news = null)
     {
-        //
+        if ($this->news) $this->category = $this->news->category;
     }
 
-    /**
-     * Get the view / contents that represent the component.
-     *
-     * @return \Illuminate\Contracts\View\View|\Closure|string
-     */
+    public function showSubNav() : bool
+    {
+        return ($this->category !== null && ($this->category->category_id !== null || $this->getSiblingOrSubCategories()->count() > 0));
+    }
+
+    public function getSiblingOrSubCategories()
+    {
+        if ($this->category->category_id === null) return $this->category->publishedChildCategories;
+        return $this->category->parentCategory->publishedChildCategories;
+    }
+
     public function render()
     {
         return view('layouts.visitor');

@@ -19,7 +19,10 @@
 </head>
 <body>
 <div class="font-sans text-gray-900 antialiased">
-    <x-Visitor.VisitorNav></x-Visitor.VisitorNav>
+    <x-Visitor.Nav></x-Visitor.Nav>
+    @if($showSubNav())
+        <x-visitor.sub-nav :list="$getSiblingOrSubCategories"></x-visitor.sub-nav>
+    @endif
 
     <div class="md:container mx-auto">
         {{ $slot }}
