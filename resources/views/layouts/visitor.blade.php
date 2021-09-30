@@ -21,7 +21,7 @@
 <div class="font-sans text-gray-900 antialiased">
     <x-Visitor.Nav></x-Visitor.Nav>
     @if($showSubNav())
-        <x-visitor.sub-nav :list="$getSiblingOrSubCategories"></x-visitor.sub-nav>
+        <x-visitor.sub-nav :category="$category" :parentCategory="$parentCategory"></x-visitor.sub-nav>
     @endif
 
     <div class="md:container mx-auto">

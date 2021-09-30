@@ -2,6 +2,7 @@
 
 namespace App\View\Components;
 
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\View\Component;
 
 class VisitorLayout extends Component
@@ -16,10 +17,16 @@ class VisitorLayout extends Component
         return ($this->category !== null && ($this->category->category_id !== null || $this->getSiblingOrSubCategories()->count() > 0));
     }
 
-    public function getSiblingOrSubCategories()
+    public function getSiblingOrSubCategories() : Collection
     {
         if ($this->category->category_id === null) return $this->category->publishedChildCategories;
         return $this->category->parentCategory->publishedChildCategories;
+    }
+
+    public function parentCategory()
+    {
+        if ($this->category->category_id === null) return $this->category;
+        return $this->category->parentCategory;
     }
 
     public function render()
