@@ -1,13 +1,15 @@
 @props(['category', 'parentCategory'])
-<div class="bg-primary py-2.5">
-    <div class="container mx-auto">
+<div class="bg-primary pt-2.5">
+    <div class="container mx-auto text-gray-700">
         <div class="pb-2">
             <a class="text-3xl font-bold" href="{{ route('visitor.category', ['category' => $parentCategory->slug]) }}">{{ $parentCategory->name }}</a>
         </div>
-        <div class="flex gap-4">
+        <ul class="flex gap-4">
             @foreach($parentCategory->publishedChildCategories as $childCategory)
-                <a href="{{ route('visitor.category', ['category' => $childCategory->slug]) }}">{{ $childCategory->name }}</a>
+                <li>
+                    <a class="inline-block px-2 pt-4 pb-2 border-b-4 hover:border-gray-100 hover:text-gray-100 transition duration-300 font-bold {{ $category->slug === $childCategory->slug ? 'border-gray-100 text-gray-100' : 'border-transparent' }}" href="{{ route('visitor.category', ['category' => $childCategory->slug]) }}">{{ $childCategory->name }}</a>
+                </li>
             @endforeach
-        </div>
+        </ul>
     </div>
 </div>
