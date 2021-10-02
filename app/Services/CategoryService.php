@@ -27,6 +27,11 @@ class CategoryService
         return $this->category->parentCategories()->published()->get();
     }
 
+    public function getPublishedChildrenCategoryIds(Category $category) : array
+    {
+        return $category->publishedChildCategories->pluck('id')->toArray();
+    }
+
     public function prependPlaceholder($categories) : Collection
     {
         return add_placeholder_to_collection(

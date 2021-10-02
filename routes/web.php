@@ -20,3 +20,4 @@ require __DIR__.'/auth.php';
 Route::get('/', [VisitorController::class, 'index'])->name('home');
 Route::get('category/{category:slug}', [VisitorController::class, 'category'])->name('visitor.category');
 Route::get('{news:slug}', [VisitorController::class, 'news'])->name('visitor.news');
+Route::get('category/{category}/news', [VisitorController::class, 'categoryNews'])->name('visitor.category.news');

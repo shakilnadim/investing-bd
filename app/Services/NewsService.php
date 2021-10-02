@@ -5,8 +5,11 @@ namespace App\Services;
 use App\Adapters\Image\ImageUploader;
 use App\Consts\Image;
 use App\Facades\NewsImageServiceFacade;
+use App\Models\Category;
 use App\Models\News;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Pagination\CursorPaginator;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use JetBrains\PhpStorm\ArrayShape;
@@ -54,6 +57,17 @@ class NewsService
     public function getLatestPublishedFeaturedNews($limit) : Collection
     {
         return $this->news->with('category')->featured()->published()->betweenStartEndDate()->latest('id')->limit($limit)->get();
+    }
+
+    public function getLatestPublishedCategoryNews(Category $category, $limit = 10) : CursorPaginator
+    {
+        $categories = [];
+        if ($category->category_id === null) {
+            $categories = app(CategoryService::class)->getPublishedChildrenCategoryIds($category);
+        }
+        array_unshift($categories, $category->id);
+
+        return $this->news->with('category')->where('is_published', 1)->betweenStartEndDate()->whereIn('category_id', $categories)->orderBy('id', 'desc')->cursorPaginate($limit);
     }
 
     #[ArrayShape([Image::LARGE => "string", Image::MEDIUM => "string", Image::THUMBNAIL => "string",  Image::XS => "string"])]

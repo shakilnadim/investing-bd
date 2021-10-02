@@ -5,12 +5,14 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\News;
 use App\Services\CategoryService;
+use App\Services\NewsService;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class VisitorController extends Controller
 {
-    public function __construct(private CategoryService $categoryService)
+    public function __construct(private CategoryService $categoryService, private NewsService $newsService)
     {
     }
 
@@ -23,6 +25,13 @@ class VisitorController extends Controller
     {
         if (!$this->categoryService->isPublished($category)) abort(404);
         return view('visitor.category', compact('category'));
+    }
+
+    public function categoryNews(Category $category) : JsonResponse
+    {
+        if (!$this->categoryService->isPublished($category)) response()->json(['status' => 404, 'message' => 'Category not found']);
+        $news = $this->newsService->getLatestPublishedCategoryNews($category);
+        return response()->json(['status' => 200, 'news' => $news]);
     }
 
     public function news(News $news) : View
