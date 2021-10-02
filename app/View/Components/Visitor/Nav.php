@@ -2,6 +2,7 @@
 
 namespace App\View\Components\Visitor;
 
+use App\Models\Category;
 use App\Services\CategoryService;
 use Illuminate\Support\Collection;
 use Illuminate\View\Component;
@@ -14,7 +15,7 @@ class Nav extends Component
      *
      * @return void
      */
-    public function __construct(private CategoryService $categoryService)
+    public function __construct(private CategoryService $categoryService, public $category = null)
     {
     }
 

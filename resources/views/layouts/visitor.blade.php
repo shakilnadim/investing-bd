@@ -19,7 +19,7 @@
 </head>
 <body>
 <div class="font-sans text-gray-900 antialiased">
-    <x-Visitor.Nav></x-Visitor.Nav>
+    <x-Visitor.Nav :category="$category"></x-Visitor.Nav>
     @if($showSubNav())
         <x-visitor.sub-nav :category="$category" :parentCategory="$parentCategory"></x-visitor.sub-nav>
     @endif

@@ -12,7 +12,7 @@
     <nav class="bg-gray-900">
         <ul class="md:container mx-auto md:flex items-center justify-between gap-1">
             @foreach($navItems as $item)
-                <li><a class="block px-2 pt-4 pb-2 border-b-4 hover:border-primary hover:text-white transition duration-300 font-semi-bold {{ \Illuminate\Support\Facades\Request::url() == route('visitor.category', ['category' => $item->slug]) ? 'border-primary text-white' : 'border-transparent text-gray-300' }}" href="{{ route('visitor.category', ['category' => $item->slug]) }}">{{ $item->name }}</a></li>
+                <li><a class="block px-2 pt-4 pb-2 border-b-4 hover:border-primary hover:text-white transition duration-300 font-semi-bold {{ $category !== null && $category->slug === $item->slug ? 'border-primary text-white' : 'border-transparent text-gray-300' }}" href="{{ route('visitor.category', ['category' => $item->slug]) }}">{{ $item->name }}</a></li>
             @endforeach
         </ul>
     </nav>
