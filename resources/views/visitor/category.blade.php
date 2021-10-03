@@ -4,5 +4,5 @@
 
     </x-slot>
 
-    <x-visitor.category-news-list :category="$category"></x-visitor.category-news-list>
+    <x-visitor.category-news-list class="mt-4" :category="$category"></x-visitor.category-news-list>
 </x-VisitorLayout>

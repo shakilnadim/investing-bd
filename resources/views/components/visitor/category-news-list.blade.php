@@ -1,7 +1,7 @@
 @props(['category'])
-<div x-data="newsData">
+<div x-data="newsData" {{ $attributes }}>
     <template x-for="news in newsList" :key="news.id">
-        <h2 x-text="news.title"></h2>
+        <x-visitor.news-side-text-card class="mb-4"></x-visitor.news-side-text-card>
     </template>
 </div>
 
