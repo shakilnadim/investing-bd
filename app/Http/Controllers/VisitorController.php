@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\CategoryNewsCollection;
+use App\Http\Resources\CategoryNewsList;
 use App\Models\Category;
 use App\Models\News;
 use App\Services\CategoryService;
@@ -27,11 +29,11 @@ class VisitorController extends Controller
         return view('visitor.category', compact('category'));
     }
 
-    public function categoryNews(Category $category) : JsonResponse
+    public function categoryNews(Category $category) : CategoryNewsCollection
     {
         if (!$this->categoryService->isPublished($category)) response()->json(['status' => 404, 'message' => 'Category not found']);
         $news = $this->newsService->getLatestPublishedCategoryNews($category);
-        return response()->json(['status' => 200, 'news' => $news]);
+        return new CategoryNewsCollection($news);
     }
 
     public function news(News $news) : View

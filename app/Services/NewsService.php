@@ -67,7 +67,14 @@ class NewsService
         }
         array_unshift($categories, $category->id);
 
-        return $this->news->select('id', 'category_id', 'title', 'slug', 'featured_img', 'featured_img_alt', 'short_description')->with('category')->where('is_published', 1)->betweenStartEndDate()->whereIn('category_id', $categories)->orderBy('id', 'desc')->cursorPaginate($limit);
+        return $this->news
+            ->select('id', 'category_id', 'title', 'slug', 'is_published', 'featured_img', 'featured_img_alt', 'short_description', 'start_date', 'created_at')
+            ->with('category')
+            ->where('is_published', 1)
+            ->betweenStartEndDate()
+            ->whereIn('category_id', $categories)
+            ->orderBy('id', 'desc')
+            ->cursorPaginate($limit);
     }
 
     #[ArrayShape([Image::LARGE => "string", Image::MEDIUM => "string", Image::THUMBNAIL => "string",  Image::XS => "string"])]
