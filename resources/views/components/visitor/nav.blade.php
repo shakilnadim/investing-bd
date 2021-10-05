@@ -1,5 +1,5 @@
 <header>
-    <div class="container max-w-1280 mx-auto md:max-h-24 overflow-hidden md:flex items-end justify-between">
+    <div class="container max-w-primary mx-auto md:max-h-24 overflow-hidden md:flex items-end justify-between">
         <a href="/">
             <img class="mx-auto" src="{{ asset('images/logo.jpeg') }}" alt="investing bd">
         </a>
