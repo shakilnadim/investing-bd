@@ -6458,16 +6458,16 @@ select {
   height: 10rem;
 }
 
+.h-43 {
+  height: 11.25rem;
+}
+
 .h-44 {
   height: 11rem;
 }
 
 .h-48 {
   height: 12rem;
-}
-
-.h-50 {
-  height: 11.75rem;
 }
 
 .h-52 {
@@ -6492,6 +6492,10 @@ select {
 
 .h-80 {
   height: 20rem;
+}
+
+.h-92 {
+  height: 23rem;
 }
 
 .h-96 {
@@ -38482,16 +38486,16 @@ select {
     height: 10rem;
   }
 
+  .sm\:h-43 {
+    height: 11.25rem;
+  }
+
   .sm\:h-44 {
     height: 11rem;
   }
 
   .sm\:h-48 {
     height: 12rem;
-  }
-
-  .sm\:h-50 {
-    height: 11.75rem;
   }
 
   .sm\:h-52 {
@@ -38516,6 +38520,10 @@ select {
 
   .sm\:h-80 {
     height: 20rem;
+  }
+
+  .sm\:h-92 {
+    height: 23rem;
   }
 
   .sm\:h-96 {
@@ -70410,16 +70418,16 @@ select {
     height: 10rem;
   }
 
+  .md\:h-43 {
+    height: 11.25rem;
+  }
+
   .md\:h-44 {
     height: 11rem;
   }
 
   .md\:h-48 {
     height: 12rem;
-  }
-
-  .md\:h-50 {
-    height: 11.75rem;
   }
 
   .md\:h-52 {
@@ -70444,6 +70452,10 @@ select {
 
   .md\:h-80 {
     height: 20rem;
+  }
+
+  .md\:h-92 {
+    height: 23rem;
   }
 
   .md\:h-96 {
@@ -102338,16 +102350,16 @@ select {
     height: 10rem;
   }
 
+  .lg\:h-43 {
+    height: 11.25rem;
+  }
+
   .lg\:h-44 {
     height: 11rem;
   }
 
   .lg\:h-48 {
     height: 12rem;
-  }
-
-  .lg\:h-50 {
-    height: 11.75rem;
   }
 
   .lg\:h-52 {
@@ -102372,6 +102384,10 @@ select {
 
   .lg\:h-80 {
     height: 20rem;
+  }
+
+  .lg\:h-92 {
+    height: 23rem;
   }
 
   .lg\:h-96 {
@@ -134266,16 +134282,16 @@ select {
     height: 10rem;
   }
 
+  .xl\:h-43 {
+    height: 11.25rem;
+  }
+
   .xl\:h-44 {
     height: 11rem;
   }
 
   .xl\:h-48 {
     height: 12rem;
-  }
-
-  .xl\:h-50 {
-    height: 11.75rem;
   }
 
   .xl\:h-52 {
@@ -134300,6 +134316,10 @@ select {
 
   .xl\:h-80 {
     height: 20rem;
+  }
+
+  .xl\:h-92 {
+    height: 23rem;
   }
 
   .xl\:h-96 {
@@ -166194,16 +166214,16 @@ select {
     height: 10rem;
   }
 
+  .\32xl\:h-43 {
+    height: 11.25rem;
+  }
+
   .\32xl\:h-44 {
     height: 11rem;
   }
 
   .\32xl\:h-48 {
     height: 12rem;
-  }
-
-  .\32xl\:h-50 {
-    height: 11.75rem;
   }
 
   .\32xl\:h-52 {
@@ -166228,6 +166248,10 @@ select {
 
   .\32xl\:h-80 {
     height: 20rem;
+  }
+
+  .\32xl\:h-92 {
+    height: 23rem;
   }
 
   .\32xl\:h-96 {
