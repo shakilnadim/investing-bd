@@ -26,7 +26,7 @@
         <x-visitor.sub-nav :category="$category" :parentCategory="$parentCategory"></x-visitor.sub-nav>
     @endif
 
-    <div class="md:container mx-auto">
+    <div class="container max-w-primary mx-auto">
         {{ $slot }}
     </div>
 </div>

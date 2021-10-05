@@ -1,6 +1,6 @@
 @props(['category', 'parentCategory'])
 <div class="bg-primary pt-2.5">
-    <div class="container mx-auto text-gray-700">
+    <div class="container max-w-primary mx-auto text-gray-700">
         <div class="pb-2">
             <a class="text-3xl font-bold" href="{{ route('visitor.category', ['category' => $parentCategory->slug]) }}">{{ $parentCategory->name }}</a>
         </div>

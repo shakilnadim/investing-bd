@@ -7130,6 +7130,10 @@ select {
   max-width: 1536px;
 }
 
+.max-w-primary {
+  max-width: 1280px;
+}
+
 .flex-1 {
   flex: 1 1 0%;
 }
@@ -39150,6 +39154,10 @@ select {
     max-width: 1536px;
   }
 
+  .sm\:max-w-primary {
+    max-width: 1280px;
+  }
+
   .sm\:flex-1 {
     flex: 1 1 0%;
   }
@@ -71072,6 +71080,10 @@ select {
 
   .md\:max-w-screen-2xl {
     max-width: 1536px;
+  }
+
+  .md\:max-w-primary {
+    max-width: 1280px;
   }
 
   .md\:flex-1 {
@@ -102998,6 +103010,10 @@ select {
     max-width: 1536px;
   }
 
+  .lg\:max-w-primary {
+    max-width: 1280px;
+  }
+
   .lg\:flex-1 {
     flex: 1 1 0%;
   }
@@ -134922,6 +134938,10 @@ select {
     max-width: 1536px;
   }
 
+  .xl\:max-w-primary {
+    max-width: 1280px;
+  }
+
   .xl\:flex-1 {
     flex: 1 1 0%;
   }
@@ -166844,6 +166864,10 @@ select {
 
   .\32xl\:max-w-screen-2xl {
     max-width: 1536px;
+  }
+
+  .\32xl\:max-w-primary {
+    max-width: 1280px;
   }
 
   .\32xl\:flex-1 {
