@@ -7,7 +7,7 @@
             <img class="w-full h-full object-cover" :src="news.featured_img" :alt="news.featured_img_alt">
         </div>
         <div class="p-2">
-            <h3 class="mb-1 text-xl font-semibold" x-text="news.title"></h3>
+            <h3 class="mb-1 text-xl font-bold" x-text="news.title"></h3>
             <p x-text="news.short_description"></p>
         </div>
         <div class="absolute w-full bottom-0 px-2 py-3 flex justify-between items-center">
