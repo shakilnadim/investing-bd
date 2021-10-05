@@ -1,6 +1,6 @@
 <div {{ $attributes->merge(['class' => 'border rounded overflow-hidden']) }}>
     <a :href="`/${news.slug}`">
-        <div class="flex gap-4 max-w-{500px}">
+        <div class="flex gap-4">
             <div class="w-80 overflow-hidden">
                 <img class="object-cover" :src="news.featured_img" :alt="news.featured_img_alt">
             </div>

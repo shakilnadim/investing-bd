@@ -14,7 +14,7 @@
             @if($showShortDescription)
                 <p><a class="block text-gray-200 mt-1" href="{{ route('visitor.news', ['news' => $news->slug]) }}">{{ $news->short_description }}</a></p>
             @endif
-            <a class="inline-block absolute z-10 border-l-2 hover:underline border-primary leading-3 mt-4 pl-1 text-gray-200" href="{{ route('visitor.category', ['category' => $news->category->slug]) }}">{{ $news->category->name }}</a>
+            <x-visitor.inc.category name="{{ $news->category->name }}" link="{{ route('visitor.category', ['category' => $news->category->slug]) }}"></x-visitor.inc.category>
         </div>
     </div>
 </div>
