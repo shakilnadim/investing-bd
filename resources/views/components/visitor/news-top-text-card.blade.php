@@ -1,5 +1,5 @@
 @props(['news', 'showShortDescription' => false, 'featuredImgSize'])
-<div {{ $attributes->merge(['class' => 'relative text-white']) }}>
+<div {{ $attributes->merge(['class' => 'relative text-white rounded overflow-hidden']) }}>
     <div class="w-full h-full">
         <img class="w-full h-full object-cover object-center" src="{{ json_decode($news->featured_img)->{$featuredImgSize} }}" alt="{{ $news->featured_img_alt }}">
     </div>
