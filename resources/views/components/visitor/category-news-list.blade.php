@@ -1,8 +1,10 @@
 @props(['category'])
-<div x-data="newsData" {{ $attributes->merge(['class' => 'grid sm:grid-cols-2 lg:grid-cols-3 gap-4']) }}>
-    <template x-for="news in newsList" :key="news.id">
-        <x-visitor.alpine-news-bottom-text-card class="mb-4"></x-visitor.alpine-news-bottom-text-card>
-    </template>
+<div x-data="newsData" {{ $attributes }}>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <template x-for="news in newsList" :key="news.id">
+            <x-visitor.alpine-news-bottom-text-card></x-visitor.alpine-news-bottom-text-card>
+        </template>
+    </div>
 </div>
 
 <script>

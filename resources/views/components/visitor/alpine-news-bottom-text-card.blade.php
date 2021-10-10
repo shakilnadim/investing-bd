@@ -1,4 +1,4 @@
-<div {{ $attributes->merge(['class' => 'relative h-auto border shadow hover:shadow-none rounded overflow-hidden drop-shadow-xl transition duration-300']) }}>
+<div {{ $attributes->merge(['class' => 'relative border shadow hover:shadow-none rounded overflow-hidden drop-shadow-xl transition duration-300']) }}>
     <a :href="`/${news.slug}`">
         <span class="absolute h-full w-full top-0 left-0"></span>
     </a>
