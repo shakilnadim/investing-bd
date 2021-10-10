@@ -5,17 +5,22 @@
             <x-visitor.alpine-news-bottom-text-card></x-visitor.alpine-news-bottom-text-card>
         </template>
     </div>
+    <template x-if="link">
+        <div x-intersect:enter="fetchNews"></div>
+    </template>
 </div>
 
 <script>
     document.addEventListener('alpine:init', () => {
         Alpine.data('newsData', () => ({
             newsList: [],
+            link: '{{ route('visitor.category.news', ['category' => $category->id]) }}',
 
-            async init() {
-                let news = await axios.get('{{ route('visitor.category.news', ['category' => $category->id]) }}');
-                console.log(news);
-                this.newsList = news.data.data;
+            async fetchNews() {
+                let news = await axios.get(this.link);
+                this.newsList.push(...news.data.data);
+                this.link = news.data.links.next;
+                // console.log(this.newsList);
             },
         }))
     })

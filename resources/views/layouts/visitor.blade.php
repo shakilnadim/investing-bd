@@ -16,6 +16,7 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <script defer src="https://unpkg.com/@alpinejs/intersect@3.2.2/dist/cdn.min.js"></script>
     <script defer src="https://unpkg.com/alpinejs@3.2.2/dist/cdn.min.js"></script>
     {{ $links ?? '' }}
 </head>
