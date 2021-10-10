@@ -4,5 +4,8 @@
 
     </x-slot>
 
-    <x-visitor.category-news-list class="mt-4" :category="$category"></x-visitor.category-news-list>
+    <div class="grid grid-cols-4 mt-4 gap-4">
+        <x-visitor.category-news-list class="col-span-4 sm:col-span-3" :category="$category"></x-visitor.category-news-list>
+        <x-Visitor.LatestNews></x-Visitor.LatestNews>
+    </div>
 </x-VisitorLayout>

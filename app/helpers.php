@@ -23,3 +23,17 @@ if (!function_exists('get_end_of_day_timestamp')){
         return Carbon::createFromFormat('Y-m-d H:i:s', $date . '23:59:59')->format('Y-m-d H:i:s');
     }
 }
+
+if (!function_exists('get_thumbnail')){
+    function get_thumbnail(string $image) : string
+    {
+        return json_decode($image)->{\App\Consts\Image::THUMBNAIL};
+    }
+}
+
+if (!function_exists('get_img')){
+    function get_img(string $image, string $size) : string
+    {
+        return json_decode($image)->{$size};
+    }
+}
