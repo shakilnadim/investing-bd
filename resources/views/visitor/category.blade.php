@@ -6,6 +6,8 @@
 
     <div class="grid grid-cols-4 my-4 gap-4">
         <x-visitor.category-news-list class="col-span-4 sm:col-span-3" :category="$category"></x-visitor.category-news-list>
-        <x-Visitor.LatestNews class="col-span-4 sm:col-span-1"></x-Visitor.LatestNews>
+        <aside class="col-span-4 sm:col-span-1">
+            <x-Visitor.LatestNews></x-Visitor.LatestNews>
+        </aside>
     </div>
 </x-VisitorLayout>

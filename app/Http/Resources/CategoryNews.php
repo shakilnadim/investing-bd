@@ -6,13 +6,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class CategoryNews extends JsonResource
 {
-    /**
-     * Transform the resource into an array.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return array|\Illuminate\Contracts\Support\Arrayable|\JsonSerializable
-     */
-    public function toArray($request)
+    public function toArray($request) : array
     {
         return [
             'id' => $this->id,
@@ -20,7 +14,7 @@ class CategoryNews extends JsonResource
             'short_description' => $this->short_description,
             'category' => $this->category,
             'time_ago' => $this->start_time > $this->created_at ? $this->start_time->diffForHumans() : $this->created_at->diffForHumans(),
-            'featured_img' => json_decode($this->featured_img)->thumbnail,
+            'featured_img' => get_thumbnail($this->featured_img),
             'slug' => $this->slug,
         ];
     }
