@@ -54,6 +54,11 @@ class NewsService
         return $news->update(['is_published' => $updatedStatus]);
     }
 
+    public function getLatestNews($limit) : Collection
+    {
+        return $this->news->with('category')->published()->betweenStartEndDate()->latest('id')->limit($limit)->get();
+    }
+
     public function getLatestPublishedFeaturedNews($limit) : Collection
     {
         return $this->news->with('category')->featured()->published()->betweenStartEndDate()->latest('id')->limit($limit)->get();
