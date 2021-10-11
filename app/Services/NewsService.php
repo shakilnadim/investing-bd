@@ -82,6 +82,15 @@ class NewsService
             ->cursorPaginate($limit);
     }
 
+    public function isFullyPublished(News $news) : bool
+    {
+        if (!$news->is_published) return false;
+        if (!$news->category->is_published) return false;
+        if ($news->category->parentCategory && !$news->category->parentCategory->is_published) return false;
+
+        return true;
+    }
+
     #[ArrayShape([Image::LARGE => "string", Image::MEDIUM => "string", Image::THUMBNAIL => "string",  Image::XS => "string"])]
     private function resizeAndUploadFeaturedImg($image) : array
     {

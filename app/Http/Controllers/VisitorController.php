@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\CategoryNewsCollection;
-use App\Http\Resources\CategoryNewsList;
 use App\Models\Category;
 use App\Models\News;
 use App\Services\CategoryService;
@@ -38,9 +37,7 @@ class VisitorController extends Controller
 
     public function news(News $news) : View
     {
-        //todo
-//        check if news is published
-
+        if (!$this->newsService->isFullyPublished($news)) abort(404);
         return view('visitor.news', compact('news'));
     }
 }
