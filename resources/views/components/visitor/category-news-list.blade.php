@@ -4,10 +4,10 @@
         <template x-for="news in newsList" :key="news.id">
             <x-visitor.alpine-news-bottom-text-card></x-visitor.alpine-news-bottom-text-card>
         </template>
+        <template x-if="link">
+            <div x-intersect:enter="fetchNews"></div>
+        </template>
     </div>
-    <template x-if="link">
-        <div x-intersect:enter="fetchNews"></div>
-    </template>
 </div>
 
 <script>
