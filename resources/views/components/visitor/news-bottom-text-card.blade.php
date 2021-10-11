@@ -13,7 +13,10 @@
         </div>
         <div class="absolute w-full bottom-0 px-2 py-3 flex justify-between items-center">
             <a href="{{ route('visitor.category', ['category' => $news->category->slug]) }}" class="border-l-2 hover:underline border-primary leading-3 pl-1">{{ $news->category->name }}</a>
-            <p class="text-sm leading-3 text-gray-500">{{ $news->time_ago }}</p>
+            <div class="flex items-center">
+                <x-icons.clock class="h-4 w-4 text-gray-500"></x-icons.clock>
+                <p class="text-xs leading-3 text-gray-500">{{ $news->start_time > $news->created_at ? $news->start_time->diffForHumans() : $news->created_at->diffForHumans() }}</p>
+            </div>
         </div>
         <div class="h-8"></div>
     </div>

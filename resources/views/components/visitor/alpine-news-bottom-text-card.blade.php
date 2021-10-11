@@ -12,7 +12,11 @@
         </div>
         <div class="absolute w-full bottom-0 px-2 py-3 flex justify-between items-center">
             <a :href="`/category/${news.category.slug}`" x-text="news.category.name" class="border-l-2 hover:underline border-primary leading-3 pl-1"></a>
-            <p class="text-sm leading-3 text-gray-500" x-text="news.time_ago"></p>
+
+            <div class="flex items-center">
+                <x-icons.clock class="h-4 w-4 text-gray-500"></x-icons.clock>
+                <p class="text-xs leading-3 text-gray-500" x-text="news.time_ago"></p>
+            </div>
         </div>
         <div class="h-8"></div>
     </div>
