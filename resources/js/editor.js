@@ -28,6 +28,7 @@ let editor = new EditorJS({
     holder: 'editor',
     placeholder: 'Let`s write an awesome story!',
     data: data,
+    readOnly: isReadonly(),
     tools: {
         header: {
             class: Header,
@@ -80,5 +81,10 @@ form.addEventListener('submit', (e) => {
         form.submit();
     })
 })
+
+function isReadonly() {
+    let path = window.location.pathname;
+    return  !path.startsWith('/admin') && path.split('/').length <= 2;
+}
 
 

@@ -377,6 +377,7 @@ var editor = new (_editorjs_editorjs__WEBPACK_IMPORTED_MODULE_0___default())({
   holder: 'editor',
   placeholder: 'Let`s write an awesome story!',
   data: data,
+  readOnly: isReadonly(),
   tools: {
     header: {
       "class": (_editorjs_header__WEBPACK_IMPORTED_MODULE_1___default()),
@@ -428,6 +429,11 @@ form.addEventListener('submit', function (e) {
     form.submit();
   });
 });
+
+function isReadonly() {
+  var path = window.location.pathname;
+  return !path.startsWith('/admin') && path.split('/').length <= 2;
+}
 })();
 
 /******/ })()
