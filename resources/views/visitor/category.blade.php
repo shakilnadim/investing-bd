@@ -9,7 +9,7 @@
             <x-visitor.category-news-list :category="$category"></x-visitor.category-news-list>
         </main>
         <aside class="col-span-4 sm:col-span-1">
-            <x-Visitor.LatestNews></x-Visitor.LatestNews>
+            <x-visitor.sidebar></x-visitor.sidebar>
         </aside>
     </div>
 </x-VisitorLayout>
