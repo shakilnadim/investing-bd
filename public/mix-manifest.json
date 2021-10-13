@@ -1,6 +1,6 @@
 {
     "/js/app.js": "/js/app.js",
-    "/js/confirmationPopup/confirmationPopup.js": "/js/confirmationPopup/confirmationPopup.js",
-    "/js/editor/editor.js": "/js/editor/editor.js",
+    "/js/confirmationPopup.js": "/js/confirmationPopup.js",
+    "/js/editor.js": "/js/editor.js",
     "/css/app.css": "/css/app.css"
 }

@@ -2,7 +2,7 @@
     <x-slot name="title">Create New News</x-slot>
 
     <x-slot name="links">
-        <script type="module" src="{{ asset('js/editor/editor.js') }}"></script>
+        <script type="module" src="{{ asset('js/editor.js') }}"></script>
     </x-slot>
 
     <x-slot name="breadcrumb">
