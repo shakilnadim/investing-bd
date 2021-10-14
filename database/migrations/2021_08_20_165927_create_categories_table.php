@@ -20,6 +20,8 @@ class CreateCategoriesTable extends Migration
             $table->string('slug', 30)->unique();
             $table->text('meta')->nullable();
             $table->boolean('is_published')->default(false);
+            $table->boolean('is_on_nav')->default(false);
+            $table->boolean('is_in_home')->default(false);
             $table->timestamps();
             $table->softDeletes();
         });
