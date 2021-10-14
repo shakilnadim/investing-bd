@@ -6,12 +6,12 @@
     </x-slot>
 
     <div class="grid md:grid-cols-4 my-4 gap-4">
-        <main class="md:col-span-3">
+        <main class="col-span-4 sm:col-span-3">
             <article>
                 <x-visitor.news-details :news="$news"></x-visitor.news-details>
             </article>
         </main>
-        <aside>
+        <aside class="col-span-4 sm:col-span-1">
             <x-visitor.sidebar></x-visitor.sidebar>
         </aside>
     </div>
