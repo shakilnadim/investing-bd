@@ -7,6 +7,7 @@ use App\Consts\Image;
 use App\Facades\NewsImageServiceFacade;
 use App\Models\Category;
 use App\Models\News;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Pagination\CursorPaginator;
@@ -64,7 +65,7 @@ class NewsService
         return $this->news->with('category')->featured()->published()->betweenStartEndDate()->latest('id')->limit($limit)->get();
     }
 
-    public function getLatestPublishedCategoryNews(Category $category, $limit = 10) : CursorPaginator
+    public function getPaginatedLatestPublishedCategoryNews(Category $category, $limit = 10) : CursorPaginator
     {
         $categories = [];
         if ($category->category_id === null) {
@@ -72,14 +73,12 @@ class NewsService
         }
         array_unshift($categories, $category->id);
 
-        return $this->news
-            ->select('id', 'category_id', 'title', 'slug', 'is_published', 'featured_img', 'featured_img_alt', 'short_description', 'start_date', 'created_at')
-            ->with('category')
-            ->where('is_published', 1)
-            ->betweenStartEndDate()
-            ->whereIn('category_id', $categories)
-            ->orderBy('id', 'desc')
-            ->cursorPaginate($limit);
+        return $this->latestPublishedCategoryNewsQuery($categories)->cursorPaginate($limit);
+    }
+
+    public function getLimitedLatestPublishedCategoryNews(array $categories, $limit) : Collection
+    {
+        return $this->latestPublishedCategoryNewsQuery($categories)->limit($limit)->get();
     }
 
     public function isFullyPublished(News $news) : bool
@@ -89,6 +88,17 @@ class NewsService
         if ($news->category->parentCategory && !$news->category->parentCategory->is_published) return false;
 
         return true;
+    }
+
+    private function latestPublishedCategoryNewsQuery(array $categoryIds) : Builder
+    {
+        return $this->news
+            ->select('id', 'category_id', 'title', 'slug', 'is_published', 'featured_img', 'featured_img_alt', 'short_description', 'start_date', 'created_at')
+            ->with('category')
+            ->where('is_published', 1)
+            ->betweenStartEndDate()
+            ->whereIn('category_id', $categoryIds)
+            ->orderBy('id', 'desc');
     }
 
     #[ArrayShape([Image::LARGE => "string", Image::MEDIUM => "string", Image::THUMBNAIL => "string",  Image::XS => "string"])]

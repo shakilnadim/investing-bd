@@ -32,6 +32,16 @@ class CategoryService
         return $category->publishedChildCategories->pluck('id')->toArray();
     }
 
+    public function getPublishedHomeCategories() : Collection
+    {
+        return $this->category
+            ->with(['publishedChildCategories' => function($q){
+                $q->select('id', 'category_id');
+            }])
+            ->homeCategories()
+            ->get();
+    }
+
     public function prependPlaceholder($categories) : Collection
     {
         return add_placeholder_to_collection(

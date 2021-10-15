@@ -38,4 +38,9 @@ class Category extends Model
     {
         $q->where('category_id', null);
     }
+
+    public function scopeHomeCategories($q)
+    {
+        $q->where('is_in_home', true)->parentCategories()->published();
+    }
 }

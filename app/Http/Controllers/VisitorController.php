@@ -31,7 +31,7 @@ class VisitorController extends Controller
     public function categoryNews(Category $category) : CategoryNewsCollection
     {
         if (!$this->categoryService->isPublished($category)) response()->json(['status' => 404, 'message' => 'Category not found']);
-        $news = $this->newsService->getLatestPublishedCategoryNews($category);
+        $news = $this->newsService->getPaginatedLatestPublishedCategoryNews($category);
         return new CategoryNewsCollection($news);
     }
 
