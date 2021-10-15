@@ -27,7 +27,7 @@ class CategoryFactory extends Factory
             'name' => $name,
             'slug' => Str::slug($name),
             'is_published' => $this->faker->boolean,
-            'is_on_nav' => $this->faker->boolean,
+            'is_on_primary_nav' => $this->faker->boolean,
             'is_in_home' => $this->faker->boolean,
         ];
     }
