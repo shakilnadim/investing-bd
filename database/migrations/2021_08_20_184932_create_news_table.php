@@ -27,7 +27,7 @@ class CreateNewsTable extends Migration
             $table->boolean('is_published')->default(false);
             $table->boolean('is_featured')->default(false);
             $table->timestamp('start_date');
-            $table->timestamp('end_date');
+            $table->timestamp('end_date')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
