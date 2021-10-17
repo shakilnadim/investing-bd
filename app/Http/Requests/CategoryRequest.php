@@ -36,6 +36,8 @@ class CategoryRequest extends FormRequest
             'category_id' => ['nullable', 'integer', Rule::exists('categories', 'id')->where($parentCategory)],
             'meta' => 'nullable|string',
             'is_published' => 'nullable',
+            'is_on_primary_nav' => 'nullable',
+            'is_in_home' => 'nullable',
         ];
 
         if ($this->method() === 'PATCH') {
