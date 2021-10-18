@@ -8,6 +8,6 @@ class AdvertisementController extends Controller
 {
     public function index()
     {
-        return 'ad';
+        return view('admin.advertisements.index');
     }
 }
