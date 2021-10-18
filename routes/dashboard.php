@@ -1,11 +1,13 @@
 <?php
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AdvertisementController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\NewsController;
 
+use App\Models\Advertisement;
 use App\Models\Category;
-use App\Models\User;
 use App\Models\News;
+use App\Models\User;
 
 
 Route::view('dashboard', 'admin.dashboard')->name('.dashboard');
@@ -44,6 +46,10 @@ Route::prefix('categories')->name('.categories')->group(function (){
 
     Route::delete('{category}/delete', [CategoryController::class, 'delete'])->name('.delete')->middleware('can:delete,category');
 
+});
+
+Route::prefix('advertisements')->name('.advertisements')->group(function (){
+    Route::get('', [AdvertisementController::class, 'index'])->middleware('can:view-list,' . Advertisement::class);
 });
 
 Route::prefix('users')->name('.users')->group(function (){
