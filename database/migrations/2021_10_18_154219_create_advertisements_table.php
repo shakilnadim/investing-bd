@@ -20,6 +20,7 @@ class CreateAdvertisementsTable extends Migration
             $table->string('sub_title')->nullable();
             $table->string('link')->nullable();
             $table->string('image')->nullable();
+            $table->boolean('is_published')->default(false);
             $table->timestamps();
         });
     }
