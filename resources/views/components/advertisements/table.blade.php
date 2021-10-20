@@ -1,9 +1,10 @@
 @props(['advertisements'])
 <div x-data="confirmationData">
-    <x-inc.table :columns="['Placement', 'Status', 'Actions']">
+    <x-inc.table :columns="['Placement', 'Advertiser', 'Status', 'Actions']">
         @foreach($advertisements as $ad)
             <tr>
                 <td class="p-3 text-sm">{{ $ad->placement }}</td>
+                <td class="p-3 text-sm">{{ $ad->advertiser }}</td>
                 <td class="p-3 text-sm">
                     <span class="px-1 rounded-lg {{ $ad->is_published ? 'bg-green-100 text-green-900' : 'bg-pink-100 text-pink-900' }}">
                         {{ $ad->is_published ? 'Published' : 'Unpublished' }}
