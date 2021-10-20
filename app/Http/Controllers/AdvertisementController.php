@@ -2,12 +2,30 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AdvertisementRequest;
+use App\Models\Advertisement;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class AdvertisementController extends Controller
 {
-    public function index()
+    public function index() : View
     {
-        return view('admin.advertisements.index');
+        $advertisements = Advertisement::all();
+        return view('admin.advertisements.index', compact('advertisements'));
     }
+
+    public function edit(Advertisement $advertisement) : View
+    {
+        return view('admin.advertisements.edit', compact('advertisement'));
+    }
+
+    public function update(AdvertisementRequest $request, Advertisement $advertisement)
+    {}
+
+    public function updateStatus(Advertisement $advertisement)
+    {}
+
+    public function delete(Advertisement $advertisement)
+    {}
 }

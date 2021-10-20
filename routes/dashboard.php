@@ -25,7 +25,7 @@ Route::prefix('news')->name('.news')->group(function (){
         Route::put('{news}/update/status/{status}', [NewsController::class, 'updateStatus'])->name('.update.status')->where('status', 'publish|unpublish');
     });
 
-    Route::delete('{news}/delete', [NewsController::class, 'delete'])->name('.delete')->middleware('can:delete,news');
+    Route::delete('{news}', [NewsController::class, 'delete'])->name('.delete')->middleware('can:delete,news');
     Route::post('image/upload', [NewsController::class, 'uploadImage'])->name('.uploadImage');
 });
 
@@ -44,12 +44,22 @@ Route::prefix('categories')->name('.categories')->group(function (){
             ->where('status', 'publish|unpublish');
     });
 
-    Route::delete('{category}/delete', [CategoryController::class, 'delete'])->name('.delete')->middleware('can:delete,category');
+    Route::delete('{category}', [CategoryController::class, 'delete'])->name('.delete')->middleware('can:delete,category');
 
 });
 
 Route::prefix('advertisements')->name('.advertisements')->group(function (){
     Route::get('', [AdvertisementController::class, 'index'])->middleware('can:view-list,' . Advertisement::class);
+
+    Route::middleware('can:update,advertisement')->group(function (){
+        Route::get('{advertisement}/edit', [AdvertisementController::class, 'edit'])->name('.edit');
+        Route::put('{advertisement}/update', [AdvertisementController::class, 'update'])->name('.update');
+        Route::put('{advertisement}/update/status/{status}', [AdvertisementController::class, 'updateStatus'])
+            ->name('.update.status')
+            ->where('status', 'publish|unpublish');
+    });
+
+    Route::delete('{advertisement}', [AdvertisementController::class, 'delete'])->name('.delete')->middleware('can:delete,advertisement');
 });
 
 Route::prefix('users')->name('.users')->group(function (){
