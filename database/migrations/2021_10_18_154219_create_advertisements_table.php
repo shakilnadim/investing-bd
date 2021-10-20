@@ -22,6 +22,7 @@ class CreateAdvertisementsTable extends Migration
             $table->string('image')->nullable();
             $table->boolean('is_published')->default(false);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
