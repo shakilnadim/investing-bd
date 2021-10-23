@@ -3,6 +3,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdvertisementController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\NewsController;
+use App\Http\Controllers\UserController;
 
 use App\Models\Advertisement;
 use App\Models\Category;
@@ -63,5 +64,17 @@ Route::prefix('advertisements')->name('.advertisements')->group(function (){
 });
 
 Route::prefix('users')->name('.users')->group(function (){
-    Route::view('', 'admin.users.index')->middleware('can:view-list,' . User::class);
+    Route::get('', [UserController::class, 'index'])->middleware('can:view-list,' . User::class);
+
+    Route::middleware('can:create,' . User::class)->group(function (){
+        Route::get('create', [UserController::class, 'create'])->name('.create');
+        Route::post('store', [UserController::class, 'store'])->name('.store');
+    });
+
+    Route::middleware('can:update,user')->group(function () {
+        Route::get('{user}/edit', [UserController::class, 'edit'])->name('.edit');
+        Route::patch('{user}/update', [UserController::class, 'update'])->name('.update');
+    });
+
+    Route::delete('{user}', [UserController::class, 'delete'])->name('.delete')->middleware('can:delete,user');
 });
