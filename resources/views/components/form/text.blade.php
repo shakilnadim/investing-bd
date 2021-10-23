@@ -1,8 +1,8 @@
-@props(['name', 'value' => '', 'placeholder' => '', 'label', 'labelFor', 'required' => false])
+@props(['name', 'type', 'value' => '', 'placeholder' => '', 'label', 'labelFor', 'required' => false])
 <div {{ $attributes }}>
     <label for="{{ $labelFor }}">{{ $label }}</label>
     <input
-        type="text"
+        type="{{ $type ?? 'text' }}"
         name="{{ $name }}"
         placeholder="{{ $placeholder }}"
         {{ $labelFor ? "id=$labelFor" : '' }}
