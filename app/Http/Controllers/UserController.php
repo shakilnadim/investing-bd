@@ -17,8 +17,7 @@ class UserController extends Controller
 
     public function create() : View
     {
-        $parentCategories = Category::select('id', 'name')->parentCategories()->orderBy('name')->get();
-        return view('admin.users.create', compact('parentCategories'));
+        return view('admin.users.create');
     }
 
     public function store()

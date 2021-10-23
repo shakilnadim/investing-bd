@@ -5,5 +5,5 @@
         <x-inc.breadcrumb :paths="['users' => route('admin.users'), 'Create' => route('admin.users.create')]"></x-inc.breadcrumb>
     </x-slot>
 
-    <x-users.form action="{{ route('admin.users.store') }}" :parentCategories="$parentCategories"></x-users.form>
+    <x-users.form action="{{ route('admin.users.store') }}"></x-users.form>
 </x-app-layout>
