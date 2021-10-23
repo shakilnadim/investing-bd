@@ -10,7 +10,7 @@
     </div>
 
     <nav class="bg-gray-900">
-        <ul class="container max-w-primary mx-auto md:flex items-center gap-2">
+        <ul class="container max-w-primary mx-auto md:flex md:flex-wrap items-center gap-2">
             @foreach($navItems as $item)
                 <li class="self-stretch"><a class="block h-full px-2 pt-4 pb-2 border-b-4 hover:border-primary hover:text-white transition duration-300 font-semi-bold {{ $category !== null && $category->slug === $item->slug ? 'border-primary text-white' : 'border-transparent text-gray-300' }}" href="{{ route('visitor.category', ['category' => $item->slug]) }}">{{ $item->name }}</a></li>
             @endforeach
