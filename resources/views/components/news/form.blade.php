@@ -18,7 +18,7 @@
     <x-form.text label="Slug *" labelFor="slug" name="slug" value="{{ old('slug') ?? $news->slug ?? '' }}" class="mt-3"></x-form.text>
     <x-news.categories-select :categories="$categories" :news="$news"></x-news.categories-select>
     <x-form.textarea label="Meta" labelFor="meta" name="meta" value="{{ old('meta') ?? $news->meta ?? '' }}" class="mt-3"></x-form.textarea>
-    <x-form.img label="Upload Featured Image *" labelFor="featured-img" name="featured_img" src="{{ json_decode($news?->featured_img)->thumbnail ?? null }}" class="mt-3"></x-form.img>
+    <x-form.img label="Upload Featured Image *" labelFor="featured-img" name="featured_img" src="{{ $news ? get_thumbnail($news->featured_img) : null }}" class="mt-3"></x-form.img>
     <x-form.text label="Featured Image Alt" labelFor="featured-img-alt" name="featured_img_alt" value="{{ old('featured_img_alt') ?? $news->featured_img_alt ?? '' }}" class="mt-3"></x-form.text>
     <div class="sm:grid grid-cols-2 gap-2 mt-3">
         <x-form.date-picker label="Start date *" labelFor="start-date" name="start_date" value="{{ old('start_date') ?? $news->start_date ?? '' }}"></x-form.date-picker>

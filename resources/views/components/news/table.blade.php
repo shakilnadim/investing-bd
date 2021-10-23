@@ -5,7 +5,7 @@
             <tr>
                 <td class="p-3 text-sm">
                     <div class="flex items-center gap-1">
-                        <img src="{{ json_decode($singleNews->featured_img)->xs }}" alt="">
+                        <img src="{{ get_img($singleNews->featured_img,\App\Consts\Image::XS) }}" alt="">
                         <p>{{ $singleNews->title }}</p>
                     </div>
                 </td>
