@@ -47,4 +47,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(News::class);
     }
+
+    public function categories()
+    {
+        return $this->belongsToMany(Category::class);
+    }
 }
