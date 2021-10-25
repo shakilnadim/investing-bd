@@ -19,6 +19,13 @@
             togglePermittedCategories(id) {
                 this.permittedCategories[id] = this.permittedCategories[id] ? !this.permittedCategories[id] : true;
                 this.categoryString = JSON.stringify(this.permittedCategories);
+            },
+
+            init() {
+                this.categoryString = @json(old('categories'));
+                if (this.categoryString) {
+                    this.permittedCategories = JSON.parse(this.categoryString);
+                }
             }
         }))
     })
