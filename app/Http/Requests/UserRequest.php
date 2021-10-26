@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Consts\Roles;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules;
@@ -27,6 +28,7 @@ class UserRequest extends FormRequest
     {
         $rules = [
             'email' => 'required|string|email|max:255|unique:users',
+            'role' => ['required', 'string', Rule::in(Roles::ROLES)],
             'name' => 'required|string',
             'password' => ['required', Rules\Password::defaults()],
             'categories' => 'nullable'
