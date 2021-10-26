@@ -1,5 +1,5 @@
 <div {{ $attributes }} x-data="categorySelector">
-    <p>Category Permissions</p>
+    <p>{{ $label }}</p>
     <div class="flex flex-wrap gap-2 mt-1">
         @foreach($getParentCategories as $category)
             <div :class="permittedCategories['{{ $category->id }}'] ? 'bg-green-200 border-green-600' : 'bg-red-200 border-red-600'" class="border rounded p-2 cursor-pointer transition duration-300" @click="togglePermittedCategories('{{ $category->id }}')">
