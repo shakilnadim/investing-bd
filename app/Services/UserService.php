@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class UserService
 {
@@ -12,6 +13,7 @@ class UserService
 
     public function createUser(array $data) : User
     {
+        $data['password'] = Hash::make($data['password']);
         $user = $this->user->create($data);
         if ($user->isAuthor()) $user->categories()->sync($this->formatPermittedCategoriesArray($data['categories']));
         return $user;
