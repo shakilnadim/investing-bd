@@ -13,7 +13,7 @@ class UserService
     public function createUser(array $data) : User
     {
         $user = $this->user->create($data);
-        $user->categories()->sync($this->formatPermittedCategoriesArray($data['categories']));
+        if ($user->isAuthor()) $user->categories()->sync($this->formatPermittedCategoriesArray($data['categories']));
         return $user;
     }
 
