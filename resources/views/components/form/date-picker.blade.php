@@ -57,9 +57,7 @@
                                 <button
                                     type="button"
                                     class="transition ease-in-out duration-100 inline-flex cursor-pointer hover:bg-gray-200 p-1 rounded-full"
-                                    :class="{'cursor-not-allowed opacity-25': month == 0 }"
-                                    :disabled="month == 0 ? true : false"
-                                    @click="month--; getNoOfDays()"
+                                    @click="previousYearMonth(); getNoOfDays()"
                                 >
                                     <svg
                                         class="h-6 w-6 text-gray-500 inline-flex"
@@ -78,9 +76,7 @@
                                 <button
                                     type="button"
                                     class="transition ease-in-out duration-100 inline-flex cursor-pointer hover:bg-gray-200 p-1 rounded-full"
-                                    :class="{'cursor-not-allowed opacity-25': month == 11 }"
-                                    :disabled="month == 11 ? true : false"
-                                    @click="month++; getNoOfDays()"
+                                    @click="nextYearMonth(); getNoOfDays()"
                                 >
                                     <svg
                                         class="h-6 w-6 text-gray-500 inline-flex"
@@ -234,6 +230,22 @@
                 this.blankdays = blankdaysArray;
                 this.no_of_days = daysArray;
             },
+
+            previousYearMonth() {
+                this.month--;
+                if(this.month === -1) {
+                    this.month = 11;
+                    this.year--;
+                }
+            },
+
+            nextYearMonth() {
+                this.month++;
+                if(this.month === 12) {
+                    this.month = 0;
+                    this.year++;
+                }
+            }
         }))
     })
 </script>
