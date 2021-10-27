@@ -9,7 +9,7 @@ use Illuminate\View\Component;
 class CategoryListSelector extends Component
 {
 
-    public function __construct(public string $label, public $permittedCategories = [])
+    public function __construct(public string $label, public $permittedCategories = '')
     {
         //
     }

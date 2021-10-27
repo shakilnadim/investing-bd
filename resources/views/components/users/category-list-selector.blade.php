@@ -22,7 +22,7 @@
             },
 
             init() {
-                this.categoryString = @json(old('categories'));
+                this.categoryString = @json(old('categories') ?? $permittedCategories);
                 if (this.categoryString) {
                     this.permittedCategories = JSON.parse(this.categoryString);
                 }

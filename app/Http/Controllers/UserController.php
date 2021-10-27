@@ -35,11 +35,15 @@ class UserController extends Controller
 
     public function edit(User $user) : View
     {
-        return view('admin.users.edit', compact('user'));
+        $permittedCategories = $this->userService->formatPermittedCategoriesForUi($user->categories);
+        return view('admin.users.edit', compact('user', 'permittedCategories'));
     }
 
-    public function update()
-    {}
+    public function update(User $user, UserRequest $request) : RedirectResponse
+    {
+        $this->userService->updateUser($user, $request->validated());
+        return redirect()->route('admin.users')->with('success', 'User updated successfully!');
+    }
 
     public function delete()
     {}

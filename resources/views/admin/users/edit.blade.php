@@ -7,5 +7,5 @@
         </x-inc.breadcrumb>
     </x-slot>
 
-    <x-users.form action="{{ route('admin.users.update', $user->id) }}" method="patch" :user="$user"></x-users.form>
+    <x-users.form action="{{ route('admin.users.update', $user->id) }}" method="patch" :user="$user" :permittedCategories="$permittedCategories"></x-users.form>
 </x-app-layout>
