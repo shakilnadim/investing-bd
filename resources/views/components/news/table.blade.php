@@ -10,8 +10,8 @@
                     </div>
                 </td>
                 <td class="p-3 text-sm">{{ $singleNews->slug }}</td>
-                <td class="p-3 text-sm">{{ $singleNews->category->parentCategory->name ?? $singleNews->category->name }}</td>
-                <td class="p-3 text-sm">{{ isset($singleNews->category->parentCategory->name) ? $singleNews->category->name : null }}</td>
+                <td class="p-3 text-sm">{{ get_parent_category_name($singleNews) }}</td>
+                <td class="p-3 text-sm">{{ get_sub_category_name($singleNews) }}</td>
                 <td class="p-3 text-sm">
                     <span class="px-1 rounded-lg {{ $singleNews->is_published ? 'bg-green-100 text-green-900' : 'bg-pink-100 text-pink-900' }}">
                         {{ $singleNews->is_published ? 'Published' : 'Unpublished' }}

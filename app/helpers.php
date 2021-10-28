@@ -37,3 +37,26 @@ if (!function_exists('get_img')){
         return json_decode($image)->{$size};
     }
 }
+
+if (!function_exists('get_parent_category_name')){
+    function get_parent_category_name(\App\Models\News $news) : string
+    {
+        if (is_uncategorized($news)) return 'Uncategorized';
+        return $news->category->parentCategory->name ?? $news->category->name;
+    }
+}
+
+if (!function_exists('get_sub_category_name')){
+    function get_sub_category_name(\App\Models\News $news) : string | null
+    {   if (is_uncategorized($news)) return 'Uncategorized';
+        return isset($news->category->parentCategory->name) ? $news->category->name : null;
+    }
+}
+
+if (!function_exists('is_uncategorized')){
+    function is_uncategorized(\App\Models\News $news) : bool
+    {
+        if (!isset($news->category) || ($news->category->category_id && !isset($news->category->parentCategory))) return true;
+        return false;
+    }
+}
