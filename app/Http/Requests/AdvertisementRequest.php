@@ -28,7 +28,7 @@ class AdvertisementRequest extends FormRequest
         $rules = [
             'advertiser' => 'string|required',
             'title' => 'string|nullable',
-            'sub_title' => 'string',
+            'sub_title' => 'string|nullable',
             'link' => 'required|url',
             'is_published' => 'nullable',
             'image_type' => ['required', 'string', Rule::in(Image::AD_IMAGE_TYPES)],

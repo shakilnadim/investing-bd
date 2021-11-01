@@ -8,6 +8,10 @@ use Illuminate\Support\Str;
 
 abstract class ImageUploader
 {
+    /**
+     * @throws InvalidImageDimensionException
+     * @throws InvalidImageImageNameException
+     */
     public function resizeWithAspectRatio($image, array $dimensions, string $directory = null, string $imageName = null) : array
     {
         $images = [];

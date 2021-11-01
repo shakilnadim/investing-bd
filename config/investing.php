@@ -16,6 +16,8 @@ return [
             Image::MEDIUM => '640x400',
             Image::THUMBNAIL => '320x200',
             Image::XS => '60x45',
+            Image::BANNER => '468x60',
+            Image::REGULAR => '320x200',
         ]
     ]
 ];
