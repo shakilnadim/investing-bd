@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\AdvertisementRequest;
 use App\Models\Advertisement;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -20,8 +21,10 @@ class AdvertisementController extends Controller
         return view('admin.advertisements.edit', compact('advertisement'));
     }
 
-    public function update(AdvertisementRequest $request, Advertisement $advertisement)
-    {}
+    public function update(AdvertisementRequest $request, Advertisement $advertisement) : RedirectResponse
+    {
+        dd($advertisement);
+    }
 
     public function updateStatus(Advertisement $advertisement)
     {}

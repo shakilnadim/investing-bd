@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests;
 
+use App\Consts\Image;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class AdvertisementRequest extends FormRequest
 {
@@ -11,9 +13,9 @@ class AdvertisementRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize() : bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,10 +23,18 @@ class AdvertisementRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules() : array
     {
-        return [
-            //
+        $rules = [
+            'advertiser' => 'string|required',
+            'title' => 'string|nullable',
+            'sub_title' => 'string',
+            'link' => 'required|url',
+            'is_published' => 'nullable',
+            'image_type' => ['required', 'string', Rule::in(Image::AD_IMAGE_TYPES)],
         ];
+        if (!$this->advertisement->image) $rules['image'] = 'required|image|max:5000';
+
+        return $rules;
     }
 }
