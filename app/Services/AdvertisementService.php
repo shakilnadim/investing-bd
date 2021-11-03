@@ -8,12 +8,29 @@ use App\Exceptions\InvalidAdvertisementImageType;
 use App\Exceptions\InvalidImageDimensionException;
 use App\Exceptions\InvalidImageImageNameException;
 use App\Models\Advertisement;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 
 class AdvertisementService
 {
-    public function __construct(private ImageUploader $imageUploader)
+    public function __construct(private ImageUploader $imageUploader, private Advertisement $advertisement)
     {
+    }
+
+    public function getPublishedAds() : Collection
+    {
+        return $this->advertisement->published()->get();
+    }
+
+    public function getCachedPublishedAds() : Collection
+    {
+        if (!Cache::has('ads')) {
+            Cache::put('ads', $this->getPublishedAds());
+        }
+        return Cache::get('ads', function (){
+            return $this->getPublishedAds();
+        });
     }
 
     public function updateAd(Advertisement $advertisement, array $data) : Advertisement

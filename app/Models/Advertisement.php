@@ -11,4 +11,9 @@ class Advertisement extends Model
     use HasFactory, SoftDeletes;
 
     protected $guarded = ['id'];
+
+    public function scopePublished($q) : void
+    {
+        $q->where('is_published', true);
+    }
 }

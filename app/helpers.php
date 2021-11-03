@@ -60,3 +60,12 @@ if (!function_exists('is_uncategorized')){
         return false;
     }
 }
+
+if (!function_exists('get_header_ad')){
+    function get_header_ad() : \App\Models\Advertisement | null
+    {
+        $advertisementService = app(\App\Services\AdvertisementService::class);
+        $publishedAds = $advertisementService->getCachedPublishedAds();
+        return $publishedAds->where('placement', 'header')->first();
+    }
+}
