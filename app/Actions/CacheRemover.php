@@ -2,12 +2,13 @@
 
 namespace App\Actions;
 
+use App\Consts\CacheEvents;
 use Illuminate\Support\Facades\Cache;
 
 class CacheRemover
 {
     private array $cacheEventKeys = [
-        'ad-update' => ['ads'],
+        CacheEvents::AD_UPDATE => ['ads'],
     ];
 
     public function handle($event) : void
