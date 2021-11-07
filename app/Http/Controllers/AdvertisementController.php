@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exceptions\AdIsNotPublishable;
 use App\Http\Requests\AdvertisementRequest;
 use App\Models\Advertisement;
 use App\Services\AdvertisementService;
@@ -32,8 +33,15 @@ class AdvertisementController extends Controller
         return redirect()->route('admin.advertisements')->with('success', 'Advertisement updated successfully!');
     }
 
-    public function updateStatus(Advertisement $advertisement)
-    {}
+    public function updateStatus(Advertisement $advertisement, $status) : RedirectResponse
+    {
+        try {
+            $this->advertisementService->updateStatus($advertisement, $status);
+            return redirect()->back()->with('success', 'Ad status updated successfully!');
+        } catch (AdIsNotPublishable $exception) {
+            return redirect()->back()->with('error', $exception->getMessage());
+        }
+    }
 
     public function delete(Advertisement $advertisement)
     {}
