@@ -1,11 +1,11 @@
 <header>
     <div class="container max-w-primary mx-auto md:max-h-24 overflow-hidden md:flex items-end justify-between">
         <a href="/">
-            <img class="mx-auto" src="{{ asset('images/logo.jpeg') }}" alt="investing bd">
+            <img class="mx-auto sm:h-16" src="{{ asset('images/logo.jpeg') }}" alt="investing bd">
         </a>
         <div class="relative max-h-24">
-            <img class="max-w-full max-h-24 mx-auto" src="{{ Storage::url('biggapon/Media_Hub_Web_Banner4.jpg') }}" alt="">
-            <a target="_blank" href="https://youtube.com"><span class="absolute w-full h-full top-0 left-0"></span></a>
+            <img class="max-w-full max-h-24 mx-auto" src="{{ \Illuminate\Support\Facades\Storage::url(get_header_ad()->image) }}" alt="">
+            <a target="_blank" href="{{ get_header_ad()->link }}"><span class="absolute w-full h-full top-0 left-0"></span></a>
         </div>
     </div>
 
